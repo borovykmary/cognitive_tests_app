@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "671865763201",
+    "project_id": "cognitive-tests-app",
+    "storage_bucket": "cognitive-tests-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:671865763201:android:a703258e9e03cf2dcb6480",
+        "android_client_info": {
+          "package_name": "com.example.cognittiveassesmenttests"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "671865763201-5170kvfkin2tpl8brtltfdipqr68edg0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cognittiveassesmenttests",
+            "certificate_hash": "8ac77c380fc88b374adf3de41cbca8dc025e25d4"
+          }
+        },
+        {
+          "client_id": "671865763201-afjpj4kvuhcll7in9t3pj3o5uapfvmsk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP0vnYACWSx06arjQMA-_YMhwO9LRDv-8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "671865763201-afjpj4kvuhcll7in9t3pj3o5uapfvmsk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

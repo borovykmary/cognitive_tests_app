@@ -59,9 +59,8 @@
 
     <EditText
         android:id="@+id/editTextNameRegisterAge"
-        android:layout_width="171dp"
+        android:layout_width="161dp"
         android:layout_height="45dp"
-        android:layout_marginStart="32dp"
 
         android:layout_marginTop="20dp"
         android:background="@drawable/fancy_edittext"
@@ -76,16 +75,18 @@
         android:paddingVertical="12dp"
         android:textColor="@color/text_gray"
         android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister" />
 
     <EditText
         android:id="@+id/editTextNameRegisterGender"
-        android:layout_width="171dp"
+        android:layout_width="161dp"
         android:layout_height="45dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
 
-        android:layout_marginEnd="32dp"
+        android:layout_marginTop="20dp"
         android:background="@drawable/fancy_edittext"
         android:drawableStart="@drawable/user_register_icon"
         android:drawablePadding="8dp"
@@ -93,12 +94,12 @@
         android:fontFamily="@font/inter_regular"
         android:hint="Your Gender"
         android:inputType="text"
-        android:paddingHorizontal="16dp"
 
+        android:paddingHorizontal="16dp"
         android:paddingVertical="12dp"
         android:textColor="@color/text_gray"
         android:textSize="14dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextNameRegisterAge"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister" />
 
     <EditText

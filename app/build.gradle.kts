@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    id("com.google.gms.google-services")
+    id ("kotlin-kapt")
 }
 
 android {
@@ -44,6 +46,7 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.firebase.auth.ktx)
+    implementation(libs.firebase.auth)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -58,4 +61,12 @@ dependencies {
 
     implementation("androidx.work:work-runtime-ktx:2.9.0")
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
+
+    // Mongo Realm
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation ("io.realm.kotlin:library-base:1.6.1")
+
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("org.json:json:20210307")
+
 }

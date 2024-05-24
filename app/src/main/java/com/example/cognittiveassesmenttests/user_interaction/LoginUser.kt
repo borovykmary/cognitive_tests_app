@@ -3,7 +3,7 @@ package com.example.cognittiveassesmenttests.user_interaction
 import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
-import com.example.cognittiveassesmenttests.HomeActivity
+import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
@@ -36,7 +36,7 @@ class LoginUser(private val activity: Activity) {
             if (task.isSuccessful) {
                 // User logged in successfully
                 Toast.makeText(activity, "Logged in successfully", Toast.LENGTH_SHORT).show()
-                val intent = Intent(activity, HomeActivity::class.java)
+                val intent = Intent(activity, MainActivity::class.java)
                 activity.startActivity(intent)
                 } else {
                 // Login failed
@@ -92,7 +92,7 @@ class LoginUser(private val activity: Activity) {
                 if (task.isSuccessful) {
                     // User logged in successfully
                     Toast.makeText(activity, "Logged in successfully with Google", Toast.LENGTH_SHORT).show()
-                    val intent = Intent(activity, HomeActivity::class.java)
+                    val intent = Intent(activity, MainActivity::class.java)
                     activity.startActivity(intent)
                 } else {
                     // Login failed

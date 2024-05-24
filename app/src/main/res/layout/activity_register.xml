@@ -84,7 +84,7 @@
         android:id="@+id/editTextNameRegisterGender"
         android:layout_width="161dp"
         android:layout_height="45dp"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="18dp"
 
         android:layout_marginTop="20dp"
         android:background="@drawable/fancy_edittext"
@@ -99,6 +99,8 @@
         android:paddingVertical="12dp"
         android:textColor="@color/text_gray"
         android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/editTextNameRegisterAge"
         app:layout_constraintTop_toBottomOf="@+id/editTextEmailAddressRegister" />
 

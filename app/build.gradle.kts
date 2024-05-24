@@ -51,6 +51,13 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation ("androidx.compose.ui:ui:1.1.0-beta01")
+    implementation ("androidx.compose.material:material:1.1.0-beta01")
+    implementation ("androidx.compose.ui:ui-tooling-preview:1.1.0-beta01")
+    androidTestImplementation ("androidx.compose.ui:ui-test-junit4:1.1.0-beta01")
+    debugImplementation ("androidx.compose.ui:ui-tooling:1.1.0-beta01")
+    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.1.0-beta01")
+
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation("com.google.firebase:firebase-analytics")
 
@@ -69,4 +76,6 @@ dependencies {
     implementation ("com.squareup.okhttp3:okhttp:4.9.1")
     implementation ("org.json:json:20210307")
 
+
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.17.0")
 }

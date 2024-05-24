@@ -14,11 +14,23 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".SDMTTest.SDMTInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MiniAceTest.MiniAceInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cardsTest.CardInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".cardsTest.CardsActivity"
+            android:exported="false" />
+        <activity
             android:name=".RegisterActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

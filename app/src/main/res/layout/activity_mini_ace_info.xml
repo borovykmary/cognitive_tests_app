@@ -193,6 +193,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginBottom="71dp"
         android:fontFamily="@font/poppins_semibold"
         android:shadowColor="@color/text_gray"
         android:shadowDx="3"
@@ -201,8 +202,8 @@
         android:text="Mini Ace test"
         android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="80dp" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"

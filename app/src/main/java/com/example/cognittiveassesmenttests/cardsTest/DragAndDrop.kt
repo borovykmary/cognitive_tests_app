@@ -1,6 +1,6 @@
 package com.example.cognittiveassesmenttests.cardsTest
 
-import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
+/*import androidx.compose.foundation.gestures.detectDragGesturesAfterLongPress
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.fillMaxSize
@@ -123,4 +123,4 @@ internal class DragTargetInfo {
     var dragOffset by mutableStateOf(Offset.Zero)
     var draggableComposable by mutableStateOf<(@Composable () -> Unit)?>(null)
     var dataToDrop by mutableStateOf<Any?>(null)
-}
+}*/

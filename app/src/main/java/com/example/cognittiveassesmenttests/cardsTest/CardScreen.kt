@@ -1,6 +1,6 @@
 package com.example.cognittiveassesmenttests.cardsTest
 
-import androidx.compose.animation.AnimatedVisibility
+/*import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -143,3 +143,4 @@ fun CardScreen(
         }
     }
 }
+*/

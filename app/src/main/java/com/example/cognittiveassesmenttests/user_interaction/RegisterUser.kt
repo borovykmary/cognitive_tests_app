@@ -6,11 +6,13 @@ import android.content.Intent
 import android.widget.Toast
 import com.example.cognittiveassesmenttests.LoginActivity
 import com.example.cognittiveassesmenttests.mongoDB.model.User
+import com.example.cognittiveassesmenttests.mongoDB.setupConnection
 import com.example.cognittiveassesmenttests.mongoDB.users.UsersQueries
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -49,15 +51,18 @@ class RegisterUser(private val context: Context) {
                             if (task.isSuccessful) {
                                 // User profile updated successfully
                                 // Now insert the user into the MongoDB
-                                val newUser = User().apply {
-                                    firebase_user_id = user.uid
-                                    this.name = name
-                                    this.age = age.toInt()
-                                    this.gender = gender
-                                }
+                                val newUser = User(
+                                    id = "0",
+                                    name = name,
+                                    age = age.toInt(),
+                                    gender = gender,
+                                    firebase_user_id = user.uid)
 
-                                /*GlobalScope.launch(Dispatchers.IO) {
-                                    usersQueries.insertUser(newUser)
+
+                                /*runBlocking {
+                                    setupConnection()?.let { db: MongoDatabase ->
+                                        usersQueries.insertUser(database = db, newUser)
+                                    }
                                 }*/
 
                                 Toast.makeText(context, "Registered successfully", Toast.LENGTH_SHORT).show()

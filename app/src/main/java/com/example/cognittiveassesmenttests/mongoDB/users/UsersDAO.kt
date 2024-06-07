@@ -2,9 +2,9 @@ package com.example.cognittiveassesmenttests.mongoDB.users
 
 
 import com.example.cognittiveassesmenttests.mongoDB.model.User
-import kotlinx.coroutines.flow.Flow
-import org.mongodb.kbson.ObjectId
+import com.mongodb.kotlin.client.coroutine.MongoDatabase
+
 
 interface UsersDAO {
-    suspend fun insertUser(user: User)
+    suspend fun insertUser(database: MongoDatabase, user: User)
 }

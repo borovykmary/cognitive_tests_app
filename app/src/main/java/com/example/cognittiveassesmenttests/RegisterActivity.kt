@@ -13,7 +13,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.helpers.blurBitmap
 import com.example.cognittiveassesmenttests.helpers.drawableToBitmap
-import com.example.cognittiveassesmenttests.user_interaction.LoginUser
 import com.example.cognittiveassesmenttests.user_interaction.RegisterUser
 
 class RegisterActivity : AppCompatActivity() {
@@ -23,7 +22,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_register)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.MiniAceinfoBackButton)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets

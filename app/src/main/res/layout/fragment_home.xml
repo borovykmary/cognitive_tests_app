@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/HomeFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".HomeFragment">
@@ -80,7 +81,7 @@
          app:layout_constraintTop_toTopOf="@+id/bg3" />
 
      <ImageView
-         android:id="@+id/imageView7"
+         android:id="@+id/SDMTBackButton"
          android:layout_width="83dp"
          android:layout_height="73dp"
          android:src="@drawable/desk"
@@ -130,7 +131,7 @@
          app:layout_constraintBottom_toBottomOf="@+id/bg2"
          app:layout_constraintEnd_toEndOf="@+id/bg2"
          app:layout_constraintHorizontal_bias="0.0"
-         app:layout_constraintStart_toEndOf="@+id/imageView7"
+         app:layout_constraintStart_toEndOf="@+id/SDMTBackButton"
          app:layout_constraintTop_toTopOf="@+id/bg2"
          app:layout_constraintVertical_bias="0.289" />
 
@@ -212,7 +213,7 @@
          app:layout_constraintBottom_toBottomOf="@+id/bg2"
          app:layout_constraintEnd_toEndOf="@+id/bg2"
          app:layout_constraintHorizontal_bias="0.03"
-         app:layout_constraintStart_toEndOf="@+id/imageView7" />
+         app:layout_constraintStart_toEndOf="@+id/SDMTBackButton" />
 
      <TextView
          android:id="@+id/textView7"

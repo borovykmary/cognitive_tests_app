@@ -2,12 +2,16 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     id("com.google.gms.google-services")
-    id ("kotlin-kapt")
+    //id ("kotlin-kapt")
 }
 
 android {
     namespace = "com.example.cognittiveassesmenttests"
     compileSdk = 34
+
+    packagingOptions {
+        exclude("META-INF/native-image/org.mongodb/bson/native-image.properties")
+    }
 
     defaultConfig {
         applicationId = "com.example.cognittiveassesmenttests"
@@ -30,15 +34,16 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
 }
 
 dependencies {
+
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -70,11 +75,20 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
 
     // Mongo Realm
-    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    implementation ("io.realm.kotlin:library-base:1.6.1")
+    // implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    // implementation ("io.realm.kotlin:library-base:1.6.1")
 
-    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
-    implementation ("org.json:json:20210307")
+    // implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    // implementation ("org.json:json:20210307")
+
+
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("org.mongodb:mongodb-driver-kotlin-coroutine:4.10.0")
+    implementation ("io.projectreactor:reactor-core:3.4.13")
+    implementation ("org.slf4j:slf4j-api:1.7.36")
+    implementation ("org.slf4j:slf4j-simple:1.7.36")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
+
 
 
     implementation ("com.google.accompanist:accompanist-systemuicontroller:0.17.0")

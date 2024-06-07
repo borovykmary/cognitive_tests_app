@@ -1,6 +1,6 @@
 package com.example.cognittiveassesmenttests
 
-import com.example.cognittiveassesmenttests.mongoDB.model.User
+/*import com.example.cognittiveassesmenttests.mongoDB.model.User
 import com.example.cognittiveassesmenttests.mongoDB.users.UsersQueries
 import kotlinx.coroutines.runBlocking
 
@@ -21,4 +21,4 @@ fun main() {
     }
 
     println("User inserted successfully")
-}
+}*/

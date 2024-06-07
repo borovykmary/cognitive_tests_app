@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cognittiveassesmenttests.SDMTTest.SDMTInfoActivity
 import com.example.cognittiveassesmenttests.MiniAceTest.MiniAceInfoActivity
 import com.example.cognittiveassesmenttests.SDMTTest.SDMTInfoActivity
 import com.example.cognittiveassesmenttests.cardsTest.CardInfoActivity
@@ -66,6 +67,5 @@ class HomeFragment : Fragment() {
             startActivity(intent)
         }
     }
-
 }
 

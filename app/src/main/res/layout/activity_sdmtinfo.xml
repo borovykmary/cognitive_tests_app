@@ -54,7 +54,7 @@
         app:srcCompat="@drawable/back_arrow" />
 
     <Button
-        android:id="@+id/buttonLogin"
+        android:id="@+id/buttonSDMTActivity"
         android:layout_width="188dp"
         android:layout_height="42dp"
         android:layout_marginBottom="63dp"

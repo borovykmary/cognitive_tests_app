@@ -44,7 +44,7 @@
             android:id="@+id/testRecordsRecycleViewSDMT"
             android:layout_width="402dp"
             android:layout_height="545dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="@+id/imageView3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.444"
@@ -86,10 +86,9 @@
             android:text="SDMT"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/testRecordsRecycleView"
+            app:layout_constraintBottom_toBottomOf="@+id/CARDResultsButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="0.444" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
         <TextView
             android:id="@+id/CARDResultsButton"
@@ -101,26 +100,25 @@
             android:text="Cards"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/testRecordsRecycleView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/SDMTResultsButton"
             app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="0.428" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/MAResultsButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="MiniAce"
             android:clickable="true"
             android:fontFamily="@font/poppins_semibold"
+            android:text="MiniAce"
             android:textColor="@color/white"
             android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/testRecordsRecycleView"
+            app:layout_constraintBottom_toBottomOf="@+id/CARDResultsButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.474"
             app:layout_constraintStart_toEndOf="@+id/CARDResultsButton"
-            app:layout_constraintTop_toBottomOf="@+id/textView13"
-            app:layout_constraintVertical_bias="0.444" />
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

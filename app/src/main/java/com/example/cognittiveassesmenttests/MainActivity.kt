@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.nav_home -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment()).commit()
-            R.id.nav_settings -> supportFragmentManager.beginTransaction()
+            R.id.nav_records -> supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, RecordsFragment()).commit()
             R.id.nav_logout -> Toast.makeText(this, "Logout!", Toast.LENGTH_SHORT).show()
         }

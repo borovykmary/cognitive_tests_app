@@ -14,6 +14,12 @@
             app:destination="@id/miniAceInfoActivity" />
     </fragment>
 
+    <fragment
+        android:id="@+id/RecordsFragment"
+        android:name="com.example.cognittiveassesmenttests.RecordsFragment"
+        android:label="RecordsFragment" >
+    </fragment>
+
     <activity
         android:id="@+id/miniAceInfoActivity"
         android:name="com.example.cognittiveassesmenttests.MiniAceTest.MiniAceInfoActivity"

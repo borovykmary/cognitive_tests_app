@@ -1,6 +1,7 @@
 package com.example.cognittiveassesmenttests.mongoDB
 
-import com.example.cognittiveassesmenttests.mongoDB.users.UsersQueries
+// MongoDB Driver
+/*import com.example.cognittiveassesmenttests.mongoDB.users.UsersQueries
 import com.mongodb.MongoException
 import com.mongodb.kotlin.client.coroutine.MongoClient
 import com.mongodb.kotlin.client.coroutine.MongoDatabase
@@ -46,3 +47,4 @@ fun main() {
         }
     }
 }
+*/

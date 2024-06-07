@@ -75,19 +75,18 @@ dependencies {
     implementation ("com.google.android.gms:play-services-auth:19.2.0")
 
     // Mongo Realm
-    // implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-    // implementation ("io.realm.kotlin:library-base:1.6.1")
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation ("io.realm.kotlin:library-base:1.6.1")
+    implementation ("com.squareup.okhttp3:okhttp:4.9.1")
+    implementation ("org.json:json:20210307")
 
-    // implementation ("com.squareup.okhttp3:okhttp:4.9.1")
-    // implementation ("org.json:json:20210307")
-
-
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    // MongoDB Driver
+    /*implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
     implementation("org.mongodb:mongodb-driver-kotlin-coroutine:4.10.0")
     implementation ("io.projectreactor:reactor-core:3.4.13")
     implementation ("org.slf4j:slf4j-api:1.7.36")
     implementation ("org.slf4j:slf4j-simple:1.7.36")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactive:1.6.4")*/
 
 
 

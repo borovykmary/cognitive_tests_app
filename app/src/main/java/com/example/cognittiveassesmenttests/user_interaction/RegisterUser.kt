@@ -48,7 +48,24 @@ class RegisterUser(private val context: Context) {
                         ?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 // User profile updated successfully
-                                // Now insert the user into the MongoDB
+
+                                //MongoDB Driver
+
+                                /*val newUser = User(
+                                    id = "0",
+                                    name = name,
+                                    age = age.toInt(),
+                                    gender = gender,
+                                    firebase_user_id = user.uid)
+
+
+                                runBlocking {
+                                    setupConnection()?.let { db: MongoDatabase ->
+                                        usersQueries.insertUser(database = db, newUser)
+                                    }
+                                }*/
+
+                                //Mongo Realm Endpoint
                                 val newUser = User().apply {
                                     firebase_user_id = user.uid
                                     this.name = name
@@ -56,9 +73,9 @@ class RegisterUser(private val context: Context) {
                                     this.gender = gender
                                 }
 
-                                /*GlobalScope.launch(Dispatchers.IO) {
+                                GlobalScope.launch(Dispatchers.IO) {
                                     usersQueries.insertUser(newUser)
-                                }*/
+                                }
 
                                 Toast.makeText(context, "Registered successfully", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(context, LoginActivity::class.java)

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.cognittiveassesmenttests.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_miniAceInfoActivity"
+            app:destination="@id/miniAceInfoActivity" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/RecordsFragment"
+        android:name="com.example.cognittiveassesmenttests.RecordsFragment"
+        android:label="RecordsFragment" >
+    </fragment>
+
+    <activity
+        android:id="@+id/miniAceInfoActivity"
+        android:name="com.example.cognittiveassesmenttests.MiniAceTest.MiniAceInfoActivity"
+        android:label="MiniAceInfoActivity" >
+    </activity>
+
+    <activity
+        android:id="@+id/cardsInfoActivity"
+        android:name="com.example.cognittiveassesmenttests.cardsTest.CardInfoActivity"
+        android:label="CardInfoActivity" >
+    </activity>
+
+    <activity
+        android:id="@+id/sdmtInfoActivity"
+        android:name="com.example.cognittiveassesmenttests.SDMTTest.SDMTInfoActivity"
+        android:label="SDMTInfoActivity" >
+    </activity>
+
+    <activity
+        android:id="@+id/MainActivity"
+        android:name="com.example.cognittiveassesmenttests.MainActivity"
+        android:label="MainActivity" >
+    </activity>
+
+    <!-- Add other fragments and activities here -->
+
+</navigation>

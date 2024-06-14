@@ -2,6 +2,7 @@ package com.example.cognittiveassesmenttests.cardsTest
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -25,6 +26,11 @@ class CardInfoActivity : AppCompatActivity() {
         val CardsInfoBackButton = findViewById<ImageView>(R.id.CardsInfoBackButton)
         CardsInfoBackButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val CardsInfoTestButton = findViewById<Button>(R.id.buttonTestNextCards)
+        CardsInfoTestButton.setOnClickListener {
+            val intent = Intent(this, CardsActivity::class.java)
             startActivity(intent)
         }
     }

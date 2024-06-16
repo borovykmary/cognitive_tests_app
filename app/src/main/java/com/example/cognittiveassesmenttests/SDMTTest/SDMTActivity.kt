@@ -17,6 +17,7 @@ class SDMTActivity : AppCompatActivity() {
     // Create a map to store the mapping of image views to drawable resources
     private val imageViewToDrawableMap = mutableMapOf<ImageView, Int>()
     private var currentKey = 0
+    private var correctAnswers = 0 // Counter for correct answers
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,8 @@ class SDMTActivity : AppCompatActivity() {
             }
             override fun onFinish() {
                 textViewTime.text = "00:00"
+                // Show the number of correct answers in a Toast message
+                Toast.makeText(this@SDMTActivity, "Correct answers: $correctAnswers", Toast.LENGTH_LONG).show()
                 // Start MainActivity
                 val intent = Intent(this@SDMTActivity, MainActivity::class.java)
                 startActivity(intent)
@@ -111,6 +114,7 @@ class SDMTActivity : AppCompatActivity() {
             textViewKeys[i].setOnClickListener {
                 // Check if the clicked key matches the current key in imageViewKeyQuestion
                 if (imageViewToDrawableMap[imageViews[i]] == currentKey) {
+                    correctAnswers++
                     Toast.makeText(this, "Right answer", Toast.LENGTH_SHORT).show()
                 } else {
                     Toast.makeText(this, "Wrong answer", Toast.LENGTH_SHORT).show()

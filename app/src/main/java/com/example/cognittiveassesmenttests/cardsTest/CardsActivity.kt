@@ -2,9 +2,12 @@ package com.example.cognittiveassesmenttests.cardsTest
 
 import android.content.ClipData
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.DragEvent
 import android.view.View
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
@@ -28,6 +31,27 @@ class CardsActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val textViewTime = findViewById<TextView>(R.id.textViewTime)
+
+        // Initialize a new Handler instance
+        val handler = Handler(Looper.getMainLooper())
+        var secondsElapsed = 0
+
+        val runnable = object : Runnable {
+            override fun run() {
+                val minutes = secondsElapsed / 60
+                val seconds = secondsElapsed % 60
+                textViewTime.text = String.format("%02d:%02d", minutes, seconds)
+                secondsElapsed++
+                handler.postDelayed(this, 1000)
+            }
+        }
+
+        // Start the timer
+        handler.postDelayed(runnable, 1000)
+
+
         val imageViewAnswer = findViewById<ImageView>(R.id.imageViewAnswer)
         val targets = arrayOf(
             findViewById<ImageView>(R.id.imageViewTarget1),

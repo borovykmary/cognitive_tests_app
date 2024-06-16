@@ -27,5 +27,11 @@ class SDMTInfoActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
+
+        val SDMTInfoTestButton = findViewById<Button>(R.id.buttonSDMTActivity)
+        SDMTInfoTestButton.setOnClickListener {
+            val intent = Intent(this, SDMTActivity::class.java)
+            startActivity(intent)
+        }
     }
 }

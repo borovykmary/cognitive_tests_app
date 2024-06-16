@@ -1,6 +1,8 @@
 package com.example.cognittiveassesmenttests.SDMTTest
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -8,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 
 class SDMTActivity : AppCompatActivity() {
@@ -24,6 +27,26 @@ class SDMTActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val textViewTime = findViewById<TextView>(R.id.textViewTime)
+
+        // Initialize a new CountDownTimer instance
+        val countDownTimer = object : CountDownTimer(90000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 1000 / 60
+                val seconds = millisUntilFinished / 1000 % 60
+                textViewTime.text = String.format("%02d:%02d", minutes, seconds)
+            }
+            override fun onFinish() {
+                textViewTime.text = "00:00"
+                // Start MainActivity
+                val intent = Intent(this@SDMTActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+            }
+        }
+
+        // Start the countdown
+        countDownTimer.start()
 
         // Create a list of all the image views
         val imageViews = listOf(

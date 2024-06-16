@@ -1,7 +1,10 @@
 package com.example.cognittiveassesmenttests.MiniAceTest
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,6 +33,25 @@ class MiniAceTestActivity : AppCompatActivity() {
                 updateCounterImage(currentItem + 1)
             }
         }
+
+        val textViewTime = findViewById<TextView>(R.id.textViewTime)
+
+        // Initialize a new Handler instance
+        val handler = Handler(Looper.getMainLooper())
+        var secondsElapsed = 0
+
+        val runnable = object : Runnable {
+            override fun run() {
+                val minutes = secondsElapsed / 60
+                val seconds = secondsElapsed % 60
+                textViewTime.text = String.format("%02d:%02d", minutes, seconds)
+                secondsElapsed++
+                handler.postDelayed(this, 1000)
+            }
+        }
+
+        // Start the timer
+        handler.postDelayed(runnable, 1000)
     }
 
     private fun updateCounterImage(counter: Int) {

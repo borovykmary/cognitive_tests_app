@@ -25,7 +25,7 @@ import com.example.cognittiveassesmenttests.R
 //import androidx.activity.compose.setContent
 
 class CardsActivity : AppCompatActivity() {
-    private var dragCounter = 32 // 4 times more than needed, actually it is 64 times
+    private var dragCounter = 256 // 4 times more than needed, actually it is 64 times
     private var correctAnswersInRow = 0
     private var currentCondition = "color"
     private var correctAnswers = 0
@@ -38,6 +38,50 @@ class CardsActivity : AppCompatActivity() {
         val shape = properties[3]
         return CardUiItem(resourceName, color, number, shape)
     }
+
+    private fun shuffleTargets(targets: Array<ImageView>): List<CardUiItem> {
+        Log.d("CardsActivity", "Shuffling: ")
+    // Create a list of all possible CardUiItem objects
+    val allItems = mutableListOf(
+        CardUiItem("card_blue_1_circle", "blue", 1, "circle"),
+        CardUiItem("card_blue_3_circle", "blue", 3, "circle"),
+        CardUiItem("card_blue_4_star", "blue", 4, "star"),
+        CardUiItem("card_green_1_triangle", "green", 1, "triangle"),
+        CardUiItem("card_green_2_square", "green", 2, "square"),
+        CardUiItem("card_green_2_triangle", "green", 2, "triangle"),
+        CardUiItem("card_red_1_triangle", "red", 1, "triangle"),
+        CardUiItem("card_red_2_square", "red", 2, "square"),
+        CardUiItem("card_red_3_star", "red", 3, "star"),
+        CardUiItem("card_yellow_3_circle", "yellow", 3, "circle"),
+        CardUiItem("card_yellow_4_square", "yellow", 4, "square"),
+        CardUiItem("card_yellow_4_star", "yellow", 4, "star")
+    )
+
+    val result = mutableListOf<CardUiItem>()
+
+    while (result.size < 4) {
+        allItems.shuffle()
+        val candidate = allItems.first()
+
+        if (result.none { it.color == candidate.color || it.shape == candidate.shape || it.number == candidate.number }) {
+            result.add(candidate)
+            Log.d("CardsActivity", "candidate: " + candidate)
+        }
+    }
+
+    // Set the drawables for the targets
+    targets.forEachIndexed { index, target ->
+        val drawableId = resources.getIdentifier(result[index].resource, "drawable", packageName)
+        target.setImageResource(drawableId)
+    }
+
+    // Create a CardUiItem for each target
+    var targetItems = result.map { item ->
+        extractPropertiesFromResourceName(item.resource)
+    }
+
+    return targetItems
+}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,26 +145,11 @@ class CardsActivity : AppCompatActivity() {
             findViewById<ImageView>(R.id.imageViewTarget3),
             findViewById<ImageView>(R.id.imageViewTarget4)
         )
+        var targetItems = shuffleTargets(targets)
 
-        var targetDrawableIds = listOf(
-            R.drawable.card_blue_1_circle,
-            R.drawable.card_green_2_square,
-            R.drawable.card_red_3_star,
-            R.drawable.card_yellow_4_star
-        )
         var answerDrawableId = answerDrawableIds.random()
         // Set the drawable for the imageViewAnswer
         imageViewAnswer.setImageResource(answerDrawableId)
-
-        // Set the drawables for the targets
-        targets.forEachIndexed { index, target ->
-            target.setImageResource(targetDrawableIds[index])
-        }
-
-        // Create a CardUiItem for each target
-        var targetItems = targetDrawableIds.map { drawableId ->
-            extractPropertiesFromResourceName(resources.getResourceEntryName(drawableId))
-        }
 
         imageViewAnswer.setOnLongClickListener { v ->
             val clipData = ClipData.newPlainText("", "")
@@ -194,30 +223,8 @@ class CardsActivity : AppCompatActivity() {
 
                         }
                         answerDrawableId = answerDrawableIds.random()
-                        // Shuffle the lists of drawable resources
-                        val shuffledDrawablesBlue = drawablesBlue.random()
-                        val shuffledDrawablesGreen = drawablesGreen.random()
-                        val shuffledDrawablesRed = drawablesRed.random()
-                        val shuffledDrawablesYellow = drawablesYellow.random()
-                        // Assign a new drawable resource to imageViewAnswer
-                        imageViewAnswer.setImageResource(answerDrawableId)
-                        // Assign the shuffled drawable resources to the targets
-                        targets[0].setImageResource(shuffledDrawablesBlue)
-                        targets[1].setImageResource(shuffledDrawablesGreen)
-                        targets[2].setImageResource(shuffledDrawablesRed)
-                        targets[3].setImageResource(shuffledDrawablesYellow)
 
-                        targetDrawableIds = listOf(
-                            shuffledDrawablesBlue,
-                            shuffledDrawablesGreen,
-                            shuffledDrawablesRed,
-                            shuffledDrawablesYellow
-                        )
-
-                        // Create a CardUiItem for each target
-                        targetItems = targetDrawableIds.map { drawableId ->
-                            extractPropertiesFromResourceName(resources.getResourceEntryName(drawableId))
-                        }
+                        targetItems = shuffleTargets(targets)
 
                         true
                     }

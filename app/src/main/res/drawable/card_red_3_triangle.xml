@@ -7,10 +7,14 @@
       android:pathData="M20,2.5L170,2.5A17.5,17.5 0,0 1,187.5 20L187.5,200A17.5,17.5 0,0 1,170 217.5L20,217.5A17.5,17.5 0,0 1,2.5 200L2.5,20A17.5,17.5 0,0 1,20 2.5z"
       android:strokeWidth="5"
       android:fillColor="#F9FAFB"
-      android:strokeColor="#4285F4"/>
+      android:strokeColor="#EA4335"/>
   <path
-      android:strokeWidth="1"
-      android:pathData="M95,110m-24.5,0a24.5,24.5 0,1 1,49 0a24.5,24.5 0,1 1,-49 0"
-      android:fillColor="#4285F4"
-      android:strokeColor="#4285F4"/>
+      android:pathData="M125,125L155.31,174.5H94.69L125,125Z"
+      android:fillColor="#EA4335"/>
+  <path
+      android:pathData="M60,44L90.31,93.5H29.69L60,44Z"
+      android:fillColor="#EA4335"/>
+  <path
+      android:pathData="M130,44L160.31,93.5H99.69L130,44Z"
+      android:fillColor="#EA4335"/>
 </vector>

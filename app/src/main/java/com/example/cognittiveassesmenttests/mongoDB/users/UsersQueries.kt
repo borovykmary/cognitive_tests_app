@@ -1,25 +1,17 @@
-package com.example.cognittiveassesmenttests.mongoDB.users
-
+import com.google.firebase.database.DatabaseReference
+import com.example.cognittiveassesmenttests.mongoDB.DBConnection
 import com.example.cognittiveassesmenttests.mongoDB.model.User
-import com.mongodb.kotlin.client.coroutine.MongoDatabase
-import org.bson.BsonDocument
-import org.bson.BsonInt32
-import org.bson.BsonString
-import org.bson.types.ObjectId
+import com.example.cognittiveassesmenttests.mongoDB.users.UsersDAO
+import com.google.firebase.firestore.FirebaseFirestore
 
+class UsersQueries(private val dbConnection: DBConnection) : UsersDAO {
 
-class UsersQueries : UsersDAO {
-    override suspend fun insertUser(database: MongoDatabase, user: User) {
-    val collection = database.getCollection<BsonDocument>(collectionName = "Users")
-    val item = BsonDocument()
-        .append("_id", BsonString(ObjectId().toHexString()))
-        .append("name", BsonString(user.name))
-        .append("age", BsonInt32(user.age))
-        .append("gender", BsonString(user.gender))
-        .append("firebase_user_id", BsonString(user.firebase_user_id))
+    private val firestoreInstance: FirebaseFirestore = dbConnection.getFirestoreInstance()
 
-    collection.insertOne(item).also {
-        println("User added with id - ${it.insertedId}")
+    override suspend fun insertUser(user: User) {
+        val userId = user.firebase_user_id
+        if (userId != null) {
+            firestoreInstance.collection("Users").document(userId).set(user)
+        }
     }
-}
 }

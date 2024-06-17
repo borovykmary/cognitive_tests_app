@@ -1,22 +1,20 @@
 package com.example.cognittiveassesmenttests.user_interaction
 
 
+import UsersQueries
 import android.content.Context
 import android.content.Intent
 import android.widget.Toast
 import com.example.cognittiveassesmenttests.LoginActivity
+import com.example.cognittiveassesmenttests.mongoDB.DBConnection
 import com.example.cognittiveassesmenttests.mongoDB.model.User
-import com.example.cognittiveassesmenttests.mongoDB.setupConnection
-import com.example.cognittiveassesmenttests.mongoDB.users.UsersQueries
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.mongodb.kotlin.client.coroutine.MongoDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 
 /**
  * Class for handling user registration.
@@ -25,9 +23,6 @@ import kotlinx.coroutines.runBlocking
  */
 class RegisterUser(private val context: Context) {
     private lateinit var auth: FirebaseAuth
-    private val usersQueries = UsersQueries()
-
-
     /**
      * Registers a new user with the specified name, email, and password.
      *
@@ -50,20 +45,25 @@ class RegisterUser(private val context: Context) {
                         ?.addOnCompleteListener { task ->
                             if (task.isSuccessful) {
                                 // User profile updated successfully
-                                // Now insert the user into the MongoDB
-                                val newUser = User(
-                                    id = "0",
-                                    name = name,
-                                    age = age.toInt(),
-                                    gender = gender,
-                                    firebase_user_id = user.uid)
+
+                                // Create an instance of DBConnection
+                                val dbConnection = DBConnection()
+
+                                // Create an instance of UsersQueries
+                                val usersQueries = UsersQueries(dbConnection)
+
+                                val newUser = User().apply {
+                                    firebase_user_id = user.uid
+                                    this.name = name
+                                    this.age = age.toInt()
+                                    this.gender = gender
+                                }
+
+                                GlobalScope.launch(Dispatchers.IO) {
+                                    usersQueries.insertUser(newUser)
+                                }
 
 
-                                /*runBlocking {
-                                    setupConnection()?.let { db: MongoDatabase ->
-                                        usersQueries.insertUser(database = db, newUser)
-                                    }
-                                }*/
 
                                 Toast.makeText(context, "Registered successfully", Toast.LENGTH_SHORT).show()
                                 val intent = Intent(context, LoginActivity::class.java)

@@ -2,6 +2,7 @@ package com.example.cognittiveassesmenttests.MiniAceTest
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,12 @@ class MiniAceInfoActivity : AppCompatActivity() {
         val miniAceInfoBackButton = findViewById<ImageView>(R.id.miniAceInfoBackButton)
         miniAceInfoBackButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val miniAceButton = findViewById<Button>(R.id.buttonTestMA)
+        miniAceButton.setOnClickListener {
+            val intent = Intent(this, MiniAceTestActivity::class.java)
             startActivity(intent)
         }
     }

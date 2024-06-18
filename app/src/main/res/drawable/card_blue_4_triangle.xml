@@ -9,8 +9,15 @@
       android:fillColor="#F9FAFB"
       android:strokeColor="#4285F4"/>
   <path
-      android:strokeWidth="1"
-      android:pathData="M95,110m-24.5,0a24.5,24.5 0,1 1,49 0a24.5,24.5 0,1 1,-49 0"
-      android:fillColor="#4285F4"
-      android:strokeColor="#4285F4"/>
+      android:pathData="M55,33L85.31,82.5H24.69L55,33Z"
+      android:fillColor="#4285F4"/>
+  <path
+      android:pathData="M57,110L87.31,159.5H26.69L57,110Z"
+      android:fillColor="#4285F4"/>
+  <path
+      android:pathData="M132,110L162.31,159.5H101.69L132,110Z"
+      android:fillColor="#4285F4"/>
+  <path
+      android:pathData="M130,33L160.31,82.5H99.69L130,33Z"
+      android:fillColor="#4285F4"/>
 </vector>

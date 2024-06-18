@@ -1,14 +1,22 @@
 package com.example.cognittiveassesmenttests.cardsTest
 
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -22,6 +30,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+
 //import androidx.activity.compose.setContent
 
 class CardsActivity : AppCompatActivity() {
@@ -160,9 +170,10 @@ class CardsActivity : AppCompatActivity() {
                 handler.postDelayed(this, 1000)
             }
         }
-
         // Start the timer
         handler.postDelayed(runnable, 1000)
+
+        showConfirmPopup(R.id.CardsBackButton, this, R.id.CardsActivity)
 
         val drawablesBlue = listOf(
             R.drawable.card_blue_1_circle,

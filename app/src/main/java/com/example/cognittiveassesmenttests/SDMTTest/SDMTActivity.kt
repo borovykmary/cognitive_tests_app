@@ -12,6 +12,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 
 class SDMTActivity : AppCompatActivity() {
     // Create a map to store the mapping of image views to drawable resources
@@ -23,7 +24,7 @@ class SDMTActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_sdmtactivity)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.SDMTTestActivity)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -97,6 +98,7 @@ class SDMTActivity : AppCompatActivity() {
             imageViewKeyQuestion.setImageResource(currentKey)
         }
 
+        showConfirmPopup(R.id.SDMTBackButton, this, R.id.SDMTTestActivity)
         // Set click listeners for the textViewKey views
         val textViewKeys = listOf(
             findViewById<TextView>(R.id.textViewKey1),

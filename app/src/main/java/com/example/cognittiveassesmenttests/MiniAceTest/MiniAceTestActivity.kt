@@ -11,6 +11,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 
 class MiniAceTestActivity : AppCompatActivity() {
     private lateinit var viewPager: ViewPager2
@@ -33,6 +34,8 @@ class MiniAceTestActivity : AppCompatActivity() {
                 updateCounterImage(currentItem + 1)
             }
         }
+
+        showConfirmPopup(R.id.MiniAceBackButton, this, R.id.MiniAceTestActivity)
 
         val textViewTime = findViewById<TextView>(R.id.textViewTime)
 

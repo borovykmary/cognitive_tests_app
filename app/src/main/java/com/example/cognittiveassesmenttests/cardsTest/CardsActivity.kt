@@ -243,6 +243,10 @@ class CardsActivity : AppCompatActivity() {
         val answerDrawableIds = drawablesBlue + drawablesGreen + drawablesRed + drawablesYellow
 
         val imageViewAnswer = findViewById<ImageView>(R.id.imageViewAnswer)
+        var answerDrawableId = answerDrawableIds.random()
+        // Set the drawable for the imageViewAnswer
+        imageViewAnswer.setImageResource(answerDrawableId)
+
         val targets = arrayOf(
             findViewById<ImageView>(R.id.imageViewTarget1),
             findViewById<ImageView>(R.id.imageViewTarget2),
@@ -251,9 +255,7 @@ class CardsActivity : AppCompatActivity() {
         )
         var targetItems = shuffleTargets(targets)
 
-        var answerDrawableId = answerDrawableIds.random()
-        // Set the drawable for the imageViewAnswer
-        imageViewAnswer.setImageResource(answerDrawableId)
+
 
         imageViewAnswer.setOnLongClickListener { v ->
             val clipData = ClipData.newPlainText("", "")
@@ -327,6 +329,7 @@ class CardsActivity : AppCompatActivity() {
 
                         }
                         answerDrawableId = answerDrawableIds.random()
+                        imageViewAnswer.setImageResource(answerDrawableId)
 
                         targetItems = shuffleTargets(targets)
 

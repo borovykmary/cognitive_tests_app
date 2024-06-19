@@ -3,6 +3,7 @@ package com.example.cognittiveassesmenttests.SDMTTest
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -13,6 +14,8 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SDMTActivity : AppCompatActivity() {
     // Create a map to store the mapping of image views to drawable resources
@@ -42,6 +45,20 @@ class SDMTActivity : AppCompatActivity() {
                 textViewTime.text = "00:00"
                 // Show the number of correct answers in a Toast message
                 Toast.makeText(this@SDMTActivity, "Correct answers: $correctAnswers", Toast.LENGTH_LONG).show()
+
+                // Create a dataMap to store the number of correct answers
+                val dataMap = hashMapOf<String, Any>()
+                dataMap["CorrectAnswers"] = correctAnswers
+
+                // Send dataMap to the subcollection TestSDMT in a collection with a name that equals the Firebase user id
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                if (userId != null) {
+                    val db = FirebaseFirestore.getInstance()
+                    db.collection("Users").document(userId).collection("TestSDMT").document().set(dataMap)
+                        .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
+                        .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
+                }
+
                 // Start MainActivity
                 val intent = Intent(this@SDMTActivity, MainActivity::class.java)
                 startActivity(intent)

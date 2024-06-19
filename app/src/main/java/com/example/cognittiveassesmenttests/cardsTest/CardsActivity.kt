@@ -31,11 +31,13 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 //import androidx.activity.compose.setContent
 
 class CardsActivity : AppCompatActivity() {
-    private var dragCounter = 256 // 4 times more than needed, actually it is 64 times
+    private var dragCounter = 32 // 4 times more than needed, actually it is 64 times
     private var correctAnswersInRow = 0
     private var currentCondition = "color"
     private var correctAnswers = 0
@@ -356,10 +358,24 @@ class CardsActivity : AppCompatActivity() {
 
                             // Disable further dragging
                             imageViewAnswer.setOnLongClickListener(null)
+                            // Create a dataMap to store the number of correct answers and time
+                            val dataMap = hashMapOf<String, Any>()
+                            dataMap["CorrectAnswers"] = correctAnswers
+                            dataMap["Time"] = textViewTime.text.toString()
+
+                            // Send dataMap to the subcollection TestWC in a collection with a name that equals the Firebase user id
+                            val userId = FirebaseAuth.getInstance().currentUser?.uid
+                            if (userId != null) {
+                                val db = FirebaseFirestore.getInstance()
+                                db.collection("Users").document(userId).collection("TestWC").document().set(dataMap)
+                                    .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
+                                    .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
+                            }
                             // Create an intent to start MainActivity
                             val intent = Intent(this, MainActivity::class.java)
                             // Start MainActivity
                             startActivity(intent)
+                            finish()
                         } else {
                             // Revert any remaining style changes
                             imageViewAnswer.scaleX = 1f

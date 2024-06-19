@@ -10,18 +10,17 @@ import com.example.cognittiveassesmenttests.MiniAceTest4
 import com.example.cognittiveassesmenttests.MiniAceTest5
 
 class MiniAceTestAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
-    private val totalQuestions = 5
+    private val fragmentList = arrayListOf<Fragment>(
+        MiniAceTest1(),
+        MiniAceTest2(),
+        MiniAceTest3(),
+        MiniAceTest4(),
+        MiniAceTest5()
+    )
 
-    override fun getItemCount(): Int = totalQuestions
+    override fun getItemCount(): Int = fragmentList.size
 
-    override fun createFragment(position: Int): Fragment {
-        return when (position) {
-            0 -> MiniAceTest1()
-            1 -> MiniAceTest2()
-            2 -> MiniAceTest3()
-            3 -> MiniAceTest4()
-            4 -> MiniAceTest5()
-            else -> throw IllegalStateException("Invalid position for creating fragment")
-        }
-    }
+    override fun createFragment(position: Int): Fragment = fragmentList[position]
+
+    fun getCurrentFragment(position: Int): Fragment = fragmentList[position]
 }

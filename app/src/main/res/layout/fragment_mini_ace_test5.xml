@@ -14,7 +14,7 @@
             android:id="@+id/textView16"
             android:layout_width="305dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Now tell me what you remember about that name and address we were repeating at the beginning."
             android:textColor="@color/black"

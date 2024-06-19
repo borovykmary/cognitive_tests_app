@@ -1,10 +1,20 @@
 package com.example.cognittiveassesmenttests
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.Toast
+import com.example.cognittiveassesmenttests.helpers.DrawingView
+import com.google.firebase.crashlytics.buildtools.reloc.org.apache.commons.io.output.ByteArrayOutputStream
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -36,6 +46,38 @@ class MiniAceTest4 : Fragment() {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_mini_ace_test4, container, false)
     }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val drawingView = view.findViewById<DrawingView>(R.id.drawingView)
+
+        val downloadButton = view.findViewById<Button>(R.id.downloadButton)
+        val clearButton = view.findViewById<Button>(R.id.clearButton)
+
+        clearButton.setOnClickListener {
+            drawingView.clearCanvas()
+        }
+        val bitmap = drawingView.saveCanvas()
+
+
+        // Save the bitmap to the device's storage when the download button is clicked
+        if (bitmap != null) {
+            // Save the bitmap to the device's storage when the download button is clicked
+            downloadButton.setOnClickListener {
+                val filename = "drawing.png"
+                val uri = saveImage(bitmap, filename, requireContext())
+                Toast.makeText(requireContext(), "Image saved to $uri", Toast.LENGTH_SHORT).show()
+            }
+        }
+
+    }
+    fun saveImage(bitmap: Bitmap, filename: String, context: Context): Uri {
+    val bytes = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+    val path = MediaStore.Images.Media.insertImage(context.contentResolver, bitmap, filename, null)
+    return Uri.parse(path)
+
+}
 
     companion object {
         /**

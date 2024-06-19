@@ -47,7 +47,7 @@
         app:layout_constraintVertical_bias="0.12" />
 
     <Button
-        android:id="@+id/closeButton"
+        android:id="@+id/submitButton"
         android:layout_width="wrap_content"
         android:layout_height="42dp"
         android:layout_marginStart="56dp"
@@ -76,10 +76,10 @@
         android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/closeButton"
+        app:layout_constraintBottom_toBottomOf="@+id/submitButton"
         app:layout_constraintEnd_toEndOf="@+id/imageView12"
         app:layout_constraintHorizontal_bias="0.37"
-        app:layout_constraintStart_toEndOf="@+id/closeButton"
-        app:layout_constraintTop_toTopOf="@+id/closeButton"
+        app:layout_constraintStart_toEndOf="@+id/submitButton"
+        app:layout_constraintTop_toTopOf="@+id/submitButton"
         app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

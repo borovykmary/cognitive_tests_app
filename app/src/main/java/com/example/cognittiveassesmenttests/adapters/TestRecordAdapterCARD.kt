@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cognittiveassesmenttests.CardsDetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordCARD
 
-class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
+class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val testName: TextView = view.findViewById(R.id.TestResultCARD)
@@ -28,6 +30,11 @@ class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>) : Rec
         holder.testName.text = testRecord.testName
         holder.testDate.text = testRecord.testDate
         holder.testDetails.text = testRecord.testDetails
+
+        holder.testDetails.setOnClickListener {
+            val dialog = CardsDetailsDialogFragment()
+            dialog.show(fragmentManager, "DetailsDialogFragment")
+        }
     }
 
     override fun getItemCount() = testRecords.size

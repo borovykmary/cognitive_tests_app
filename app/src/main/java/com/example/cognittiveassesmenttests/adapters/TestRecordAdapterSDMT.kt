@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.SDMTDetailsDialogFragment
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordSDMT
 
-class TestRecordAdapterSDMT(private val testRecords: List<TestRecordSDMT>) : RecyclerView.Adapter<TestRecordAdapterSDMT.TestRecordViewHolder>() {
+class TestRecordAdapterSDMT(private val testRecords: List<TestRecordSDMT>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterSDMT.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val testName: TextView = view.findViewById(R.id.TestResult)
@@ -28,7 +30,13 @@ class TestRecordAdapterSDMT(private val testRecords: List<TestRecordSDMT>) : Rec
         holder.testName.text = testRecord.testName
         holder.testDate.text = testRecord.testDate
         holder.testDetails.text = testRecord.testDetails
+
+        holder.testDetails.setOnClickListener {
+            val dialog = SDMTDetailsDialogFragment()
+            dialog.show(fragmentManager, "DetailsDialogFragment")
+        }
     }
+
 
     override fun getItemCount() = testRecords.size
 }

@@ -1,5 +1,7 @@
 package com.example.cognittiveassesmenttests
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.adapters.TestRecordAdapterCARD
@@ -70,9 +73,9 @@ class RecordsFragment : Fragment() {
             TestRecordCARD("Wisconsin Card Sort Task Results", "2023-01-03", "SEE DETAILS")
         )
 
-        val adapterSDMT = TestRecordAdapterSDMT(dataSetSDMT)
-        val adapterMA = TestRecordAdapterMA(dataSetMA)
-        val adapterCARD = TestRecordAdapterCARD(dataSetCARD)
+        val adapterSDMT = TestRecordAdapterSDMT(dataSetSDMT, childFragmentManager)
+        val adapterMA = TestRecordAdapterMA(dataSetMA, childFragmentManager)
+        val adapterCARD = TestRecordAdapterCARD(dataSetCARD, childFragmentManager)
 
         recyclerViewSDMT.adapter = adapterSDMT
         recyclerViewMA.adapter = adapterMA
@@ -95,7 +98,62 @@ class RecordsFragment : Fragment() {
             recyclerViewMA.visibility = View.GONE
             recyclerViewCARD.visibility = View.VISIBLE
         }
+
     }
 
+}
 
+class SDMTDetailsDialogFragment : DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return activity?.let {
+            val builder = AlertDialog.Builder(it)
+            val inflater: LayoutInflater = requireActivity().layoutInflater;
+            val view = inflater.inflate(R.layout.see_details_popup_sdmt, null)
+
+            val closeButton: Button = view.findViewById(R.id.submitButton)
+            closeButton.setOnClickListener {
+                dismiss()
+            }
+            builder.setView(view)
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
+            dialog
+        } ?: throw IllegalStateException("Activity cannot be null")
+    }
+}
+class CardsDetailsDialogFragment : DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return activity?.let {
+            val builder = AlertDialog.Builder(it)
+            val inflater: LayoutInflater = requireActivity().layoutInflater;
+            val view = inflater.inflate(R.layout.see_details_popup_cards, null)
+
+            val closeButton: Button = view.findViewById(R.id.submitButton)
+            closeButton.setOnClickListener {
+                dismiss()
+            }
+            builder.setView(view)
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
+            dialog
+        } ?: throw IllegalStateException("Activity cannot be null")
+    }
+}
+class MADetailsDialogFragment : DialogFragment() {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return activity?.let {
+            val builder = AlertDialog.Builder(it)
+            val inflater: LayoutInflater = requireActivity().layoutInflater;
+            val view = inflater.inflate(R.layout.see_details_popup_ma, null)
+
+            val closeButton: Button = view.findViewById(R.id.submitButton)
+            closeButton.setOnClickListener {
+                dismiss()
+            }
+            builder.setView(view)
+            val dialog = builder.create()
+            dialog.window?.setBackgroundDrawableResource(R.drawable.rounded_dialog)
+            dialog
+        } ?: throw IllegalStateException("Activity cannot be null")
+    }
 }

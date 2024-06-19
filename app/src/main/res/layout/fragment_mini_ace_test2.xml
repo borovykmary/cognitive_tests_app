@@ -14,7 +14,7 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Listen once and complete the given form"
             android:textColor="@color/black"
@@ -28,13 +28,13 @@
             android:id="@+id/editTextName"
             android:layout_width="326dp"
             android:layout_height="45dp"
-            android:layout_marginTop="35dp"
-            android:background="@drawable/fancy_edittext"
 
+            android:layout_marginTop="25dp"
+            android:background="@drawable/fancy_edittext"
             android:drawablePadding="8dp"
+
             android:ems="10"
             android:fontFamily="@font/inter_regular"
-
             android:hint="Name"
             android:inputType="text"
             android:paddingHorizontal="16dp"
@@ -42,8 +42,9 @@
             android:textColor="@color/text_gray"
             android:textSize="14dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/play_button" />
 
         <EditText
             android:id="@+id/editTextAddress"
@@ -107,6 +108,16 @@
             app:layout_constraintEnd_toEndOf="@+id/editTextName1"
             app:layout_constraintStart_toStartOf="@+id/editTextName1"
             app:layout_constraintTop_toBottomOf="@+id/editTextName1" />
+
+        <ImageView
+            android:id="@+id/play_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/player"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,6 +1,7 @@
 package com.example.cognittiveassesmenttests.MiniAceTest
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -26,6 +27,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class MiniAceTestActivity : AppCompatActivity() {
+
     private lateinit var viewPager: ViewPager2
     private lateinit var imageViewCounter: ImageView
     private val dataMap = HashMap<String, String>()
@@ -34,11 +36,14 @@ class MiniAceTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mini_ace_test)
 
+
+
         viewPager = findViewById(R.id.viewPagerQuestions)
         viewPager.adapter = MiniAceTestAdapter(this)
         viewPager.isUserInputEnabled = false
 
         imageViewCounter = findViewById(R.id.imageViewCounter)
+
 
         val nextButton: ImageView = findViewById(R.id.next_button_image)
         val buttonTestSubmit: Button = findViewById(R.id.buttonTestSubmit)
@@ -170,5 +175,6 @@ class MiniAceTestActivity : AppCompatActivity() {
             }
             imageViewCounter.setImageResource(drawableRes)
         }
+
     }
 

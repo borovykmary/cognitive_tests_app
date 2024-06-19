@@ -37,7 +37,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 //import androidx.activity.compose.setContent
 
 class CardsActivity : AppCompatActivity() {
-    private var dragCounter = 32 // 4 times more than needed, actually it is 64 times
+    private var dragCounter = 128 // 4 times more than needed, actually it is 64 times
     private var correctAnswersInRow = 0
     private var currentCondition = "color"
     private var correctAnswers = 0
@@ -158,6 +158,7 @@ class CardsActivity : AppCompatActivity() {
         }
 
         val textViewTime = findViewById<TextView>(R.id.textViewTime)
+        val textViewCounter = findViewById<TextView>(R.id.textViewCounter)
 
         // Initialize a new Handler instance
         val handler = Handler(Looper.getMainLooper())
@@ -312,6 +313,7 @@ class CardsActivity : AppCompatActivity() {
                             if (isCorrect) {
                                 correctAnswersInRow++
                                 correctAnswers++
+                                textViewCounter.text = String.format("%02d/64", correctAnswers)
                                 Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show()
                             } else {
                                 correctAnswersInRow = 0

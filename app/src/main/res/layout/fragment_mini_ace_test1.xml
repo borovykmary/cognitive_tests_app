@@ -14,7 +14,7 @@
             android:id="@+id/textView16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/poppins_regular"
             android:text="What is day, date, month, year?"
             android:textColor="@color/black"

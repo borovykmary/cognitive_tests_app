@@ -14,7 +14,7 @@
             android:id="@+id/textView16"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="25dp"
             android:fontFamily="@font/poppins_regular"
             android:text="Now you can name as many animals as possible. You have one minute. Go ahead."
             android:textColor="@color/black"

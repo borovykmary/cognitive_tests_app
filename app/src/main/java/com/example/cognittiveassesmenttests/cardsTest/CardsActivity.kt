@@ -1,14 +1,22 @@
 package com.example.cognittiveassesmenttests.cardsTest
 
 import android.content.ClipData
+import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.view.DragEvent
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.PopupWindow
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.ComponentActivity
@@ -22,10 +30,14 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+
 //import androidx.activity.compose.setContent
 
 class CardsActivity : AppCompatActivity() {
-    private var dragCounter = 256 // 4 times more than needed, actually it is 64 times
+    private var dragCounter = 128 // 4 times more than needed, actually it is 64 times
     private var correctAnswersInRow = 0
     private var currentCondition = "color"
     private var correctAnswers = 0
@@ -146,6 +158,7 @@ class CardsActivity : AppCompatActivity() {
         }
 
         val textViewTime = findViewById<TextView>(R.id.textViewTime)
+        val textViewCounter = findViewById<TextView>(R.id.textViewCounter)
 
         // Initialize a new Handler instance
         val handler = Handler(Looper.getMainLooper())
@@ -160,9 +173,10 @@ class CardsActivity : AppCompatActivity() {
                 handler.postDelayed(this, 1000)
             }
         }
-
         // Start the timer
         handler.postDelayed(runnable, 1000)
+
+        showConfirmPopup(R.id.CardsBackButton, this, R.id.CardsActivity)
 
         val drawablesBlue = listOf(
             R.drawable.card_blue_1_circle,
@@ -243,6 +257,10 @@ class CardsActivity : AppCompatActivity() {
         val answerDrawableIds = drawablesBlue + drawablesGreen + drawablesRed + drawablesYellow
 
         val imageViewAnswer = findViewById<ImageView>(R.id.imageViewAnswer)
+        var answerDrawableId = answerDrawableIds.random()
+        // Set the drawable for the imageViewAnswer
+        imageViewAnswer.setImageResource(answerDrawableId)
+
         val targets = arrayOf(
             findViewById<ImageView>(R.id.imageViewTarget1),
             findViewById<ImageView>(R.id.imageViewTarget2),
@@ -251,9 +269,7 @@ class CardsActivity : AppCompatActivity() {
         )
         var targetItems = shuffleTargets(targets)
 
-        var answerDrawableId = answerDrawableIds.random()
-        // Set the drawable for the imageViewAnswer
-        imageViewAnswer.setImageResource(answerDrawableId)
+
 
         imageViewAnswer.setOnLongClickListener { v ->
             val clipData = ClipData.newPlainText("", "")
@@ -297,6 +313,7 @@ class CardsActivity : AppCompatActivity() {
                             if (isCorrect) {
                                 correctAnswersInRow++
                                 correctAnswers++
+                                textViewCounter.text = String.format("%02d/64", correctAnswers)
                                 Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show()
                             } else {
                                 correctAnswersInRow = 0
@@ -327,6 +344,7 @@ class CardsActivity : AppCompatActivity() {
 
                         }
                         answerDrawableId = answerDrawableIds.random()
+                        imageViewAnswer.setImageResource(answerDrawableId)
 
                         targetItems = shuffleTargets(targets)
 
@@ -342,10 +360,24 @@ class CardsActivity : AppCompatActivity() {
 
                             // Disable further dragging
                             imageViewAnswer.setOnLongClickListener(null)
+                            // Create a dataMap to store the number of correct answers and time
+                            val dataMap = hashMapOf<String, Any>()
+                            dataMap["CorrectAnswers"] = correctAnswers
+                            dataMap["Time"] = textViewTime.text.toString()
+
+                            // Send dataMap to the subcollection TestWC in a collection with a name that equals the Firebase user id
+                            val userId = FirebaseAuth.getInstance().currentUser?.uid
+                            if (userId != null) {
+                                val db = FirebaseFirestore.getInstance()
+                                db.collection("Users").document(userId).collection("TestWC").document().set(dataMap)
+                                    .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
+                                    .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
+                            }
                             // Create an intent to start MainActivity
                             val intent = Intent(this, MainActivity::class.java)
                             // Start MainActivity
                             startActivity(intent)
+                            finish()
                         } else {
                             // Revert any remaining style changes
                             imageViewAnswer.scaleX = 1f

@@ -3,6 +3,7 @@ package com.example.cognittiveassesmenttests.SDMTTest
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -12,6 +13,9 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class SDMTActivity : AppCompatActivity() {
     // Create a map to store the mapping of image views to drawable resources
@@ -23,7 +27,7 @@ class SDMTActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_sdmtactivity)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.SDMTTestActivity)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
@@ -41,6 +45,20 @@ class SDMTActivity : AppCompatActivity() {
                 textViewTime.text = "00:00"
                 // Show the number of correct answers in a Toast message
                 Toast.makeText(this@SDMTActivity, "Correct answers: $correctAnswers", Toast.LENGTH_LONG).show()
+
+                // Create a dataMap to store the number of correct answers
+                val dataMap = hashMapOf<String, Any>()
+                dataMap["CorrectAnswers"] = correctAnswers
+
+                // Send dataMap to the subcollection TestSDMT in a collection with a name that equals the Firebase user id
+                val userId = FirebaseAuth.getInstance().currentUser?.uid
+                if (userId != null) {
+                    val db = FirebaseFirestore.getInstance()
+                    db.collection("Users").document(userId).collection("TestSDMT").document().set(dataMap)
+                        .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
+                        .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
+                }
+
                 // Start MainActivity
                 val intent = Intent(this@SDMTActivity, MainActivity::class.java)
                 startActivity(intent)
@@ -97,6 +115,7 @@ class SDMTActivity : AppCompatActivity() {
             imageViewKeyQuestion.setImageResource(currentKey)
         }
 
+        showConfirmPopup(R.id.SDMTBackButton, this, R.id.SDMTTestActivity)
         // Set click listeners for the textViewKey views
         val textViewKeys = listOf(
             findViewById<TextView>(R.id.textViewKey1),

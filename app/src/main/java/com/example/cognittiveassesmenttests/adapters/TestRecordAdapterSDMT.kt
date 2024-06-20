@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cognittiveassesmenttests.CardsDetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.SDMTDetailsDialogFragment
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordSDMT
@@ -14,7 +15,6 @@ import com.example.cognittiveassesmenttests.dataClasses.TestRecordSDMT
 class TestRecordAdapterSDMT(private val testRecords: List<TestRecordSDMT>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterSDMT.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testName: TextView = view.findViewById(R.id.TestResult)
         val testDate: TextView = view.findViewById(R.id.time)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
@@ -27,12 +27,11 @@ class TestRecordAdapterSDMT(private val testRecords: List<TestRecordSDMT>, priva
     override fun onBindViewHolder(holder: TestRecordViewHolder, position: Int) {
         Log.d("RecordsFragment", "Test records: $testRecords")
         val testRecord = testRecords[position]
-        holder.testName.text = testRecord.testName
         holder.testDate.text = testRecord.testDate
-        holder.testDetails.text = testRecord.testDetails
+
 
         holder.testDetails.setOnClickListener {
-            val dialog = SDMTDetailsDialogFragment()
+            val dialog = SDMTDetailsDialogFragment.newInstance(testRecord)
             dialog.show(fragmentManager, "DetailsDialogFragment")
         }
     }

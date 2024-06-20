@@ -18,9 +18,9 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
     }
 
     private fun setupDrawing() {
-        mDrawPaint.color = Color.BLACK
+        mDrawPaint.color = Color.RED
         mDrawPaint.isAntiAlias = true
-        mDrawPaint.strokeWidth = 20f
+        mDrawPaint.strokeWidth = 16f
         mDrawPaint.style = Paint.Style.STROKE
         mDrawPaint.strokeJoin = Paint.Join.ROUND
         mDrawPaint.strokeCap = Paint.Cap.ROUND
@@ -64,7 +64,16 @@ class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) 
         }
     }
 
-    fun saveCanvas(): Bitmap? {
-        return mCanvasBitmap
+    fun saveCanvas(): Bitmap {
+    // Create a blank bitmap with the same dimensions as the view
+        val bitmap = Bitmap.createBitmap(this.width, this.height, Bitmap.Config.ARGB_8888)
+        val canvas = Canvas(bitmap)
+        canvas.drawColor(Color.WHITE)
+
+        // Draw the bitmap that is being used as the drawing surface onto the canvas
+        canvas.drawBitmap(mCanvasBitmap!!, 0f, 0f, mCanvasPaint)
+
+
+        return bitmap
     }
 }

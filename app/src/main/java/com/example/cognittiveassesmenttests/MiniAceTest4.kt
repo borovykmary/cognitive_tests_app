@@ -51,33 +51,14 @@ class MiniAceTest4 : Fragment() {
 
         val drawingView = view.findViewById<DrawingView>(R.id.drawingView)
 
-        val downloadButton = view.findViewById<Button>(R.id.downloadButton)
         val clearButton = view.findViewById<Button>(R.id.clearButton)
 
         clearButton.setOnClickListener {
             drawingView.clearCanvas()
         }
-        val bitmap = drawingView.saveCanvas()
-
-
-        // Save the bitmap to the device's storage when the download button is clicked
-        if (bitmap != null) {
-            // Save the bitmap to the device's storage when the download button is clicked
-            downloadButton.setOnClickListener {
-                val filename = "drawing.png"
-                val uri = saveImage(bitmap, filename, requireContext())
-                Toast.makeText(requireContext(), "Image saved to $uri", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
-    fun saveImage(bitmap: Bitmap, filename: String, context: Context): Uri {
-    val bytes = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-    val path = MediaStore.Images.Media.insertImage(context.contentResolver, bitmap, filename, null)
-    return Uri.parse(path)
 
-}
 
     companion object {
         /**

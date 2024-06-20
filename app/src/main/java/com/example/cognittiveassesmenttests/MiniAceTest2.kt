@@ -7,11 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 
 
 class MiniAceTest2 : Fragment() {
 
     private lateinit var mediaPlayer: MediaPlayer
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,22 +31,32 @@ class MiniAceTest2 : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
     mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message)
+        var counter: Int = 0
 
     val playButton = view.findViewById<ImageView>(R.id.play_button)
-    playButton.setOnClickListener {
-        if (!mediaPlayer.isPlaying) {
-            mediaPlayer.start()
-        } else {
-            mediaPlayer.stop()
-            mediaPlayer.reset()
-            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message)
+
+            playButton.setOnClickListener {
+                if (counter < 2) {
+                    if (!mediaPlayer.isPlaying) {
+                        mediaPlayer.start()
+                        counter++
+                    } else {
+                        mediaPlayer.stop()
+                        mediaPlayer.reset()
+                        mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message)
+                    }
+                } else {
+                    Toast.makeText(requireContext(), "You cannot listen to audio anymore", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-    }
-}
+
+
+
     override fun onDestroy() {
         super.onDestroy()
         mediaPlayer.release()
     }
 
 
-    }
+}

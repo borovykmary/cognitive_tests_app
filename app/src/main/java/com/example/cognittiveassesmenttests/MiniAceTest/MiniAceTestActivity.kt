@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
@@ -47,14 +48,11 @@ class MiniAceTestActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mini_ace_test)
 
-
-
         viewPager = findViewById(R.id.viewPagerQuestions)
         viewPager.adapter = MiniAceTestAdapter(this)
         viewPager.isUserInputEnabled = false
 
         imageViewCounter = findViewById(R.id.imageViewCounter)
-
 
         val nextButton: ImageView = findViewById(R.id.next_button_image)
         val buttonTestSubmit: Button = findViewById(R.id.buttonTestSubmit)
@@ -73,6 +71,14 @@ class MiniAceTestActivity : AppCompatActivity() {
                         val editTextMonth = view.findViewById<EditText>(R.id.editTextMonth)
                         val editTextYear = view.findViewById<EditText>(R.id.editTextYear)
 
+                        if(editTextDay.text.toString().isEmpty() || editTextDate.text.toString().isEmpty() || editTextMonth.text.toString().isEmpty() || editTextYear.text.toString().isEmpty()) {
+                            editTextDay.setBackgroundResource(if (editTextDay.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextDate.setBackgroundResource(if (editTextDate.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextMonth.setBackgroundResource(if (editTextMonth.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextYear.setBackgroundResource(if (editTextYear.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            return@setOnClickListener
+                        }
+
                         dataMap["Day"] = editTextDay.text.toString()
                         dataMap["Date"] = editTextDate.text.toString()
                         dataMap["Month"] = editTextMonth.text.toString()
@@ -87,6 +93,14 @@ class MiniAceTestActivity : AppCompatActivity() {
                         val editTextFieldAddress1 =
                             view.findViewById<EditText>(R.id.editTextAddress1)
 
+                        if(editTextFieldName.text.toString().isEmpty() || editTextFieldAddress.text.toString().isEmpty() || editTextFieldName1.text.toString().isEmpty() || editTextFieldAddress1.text.toString().isEmpty()) {
+                            editTextFieldName.setBackgroundResource(if (editTextFieldName.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextFieldAddress.setBackgroundResource(if (editTextFieldAddress.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextFieldName1.setBackgroundResource(if (editTextFieldName1.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextFieldAddress1.setBackgroundResource(if (editTextFieldAddress1.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            return@setOnClickListener
+                        }
+
                         dataMap["Name"] = editTextFieldName.text.toString()
                         dataMap["Address"] = editTextFieldAddress.text.toString()
                         dataMap["Name1"] = editTextFieldName1.text.toString()
@@ -96,6 +110,12 @@ class MiniAceTestActivity : AppCompatActivity() {
                     is MiniAceTest3 -> {
                         Log.d("MiniAce", "Data for Mini3: " + dataMap)
                         val editTextAnimals = view.findViewById<EditText>(R.id.editTextAnimals)
+
+                        if(editTextAnimals.text.toString().isEmpty()) {
+                            editTextAnimals.setBackgroundResource(if (editTextAnimals.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+
+                            return@setOnClickListener
+                        }
 
                         dataMap["Animals"] = editTextAnimals.text.toString()
                     }
@@ -123,6 +143,14 @@ class MiniAceTestActivity : AppCompatActivity() {
                         val editTextFieldAddress1Repeat =
                             view.findViewById<EditText>(R.id.editTextAddress1Repeat)
 
+                        if(editTextFieldNameRepeat.text.toString().isEmpty() || editTextFieldAddressRepeat.text.toString().isEmpty() || editTextFieldName1Repeat.text.toString().isEmpty() || editTextFieldAddress1Repeat.text.toString().isEmpty()) {
+                            editTextFieldNameRepeat.setBackgroundResource(if (editTextFieldNameRepeat.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextFieldAddressRepeat.setBackgroundResource(if (editTextFieldAddressRepeat.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextFieldName1Repeat.setBackgroundResource(if (editTextFieldName1Repeat.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            editTextFieldAddress1Repeat.setBackgroundResource(if (editTextFieldAddress1Repeat.text.toString().isEmpty()) R.drawable.fancy_red_edittext else R.drawable.fancy_edittext)
+                            return@setOnClickListener
+                        }
+
                         dataMap["NameRepeat"] = editTextFieldNameRepeat.text.toString()
                         dataMap["AddressRepeat"] = editTextFieldAddressRepeat.text.toString()
                         dataMap["Name1Repeat"] = editTextFieldName1Repeat.text.toString()
@@ -137,7 +165,10 @@ class MiniAceTestActivity : AppCompatActivity() {
                 Log.d("MiniAce", "Data: " + dataMap)
             } else {
                 nextButton.isEnabled = false
+                nextButton.setImageResource(R.drawable.left_arrow_gray)
                 buttonTestSubmit.isEnabled = true
+                buttonTestSubmit.setBackgroundResource(R.drawable.gradient_rounded_button)
+                buttonTestSubmit.setTextColor(ContextCompat.getColor(this, R.color.white))
             }
         }
 
@@ -195,6 +226,7 @@ class MiniAceTestActivity : AppCompatActivity() {
                      val currentDate = sdf.format(Date())
                     dataMap["DateTime"] = currentDate
                     dataMap["DrawingImageURL"] = downloadUrl
+                    dataMap["userID"] = FirebaseAuth.getInstance().currentUser?.uid.toString()
                     dataMap["Time"] = textViewTime.text.toString()
                     val userId = FirebaseAuth.getInstance().currentUser?.uid
                     if (userId != null) {
@@ -205,10 +237,9 @@ class MiniAceTestActivity : AppCompatActivity() {
                     }
                 }
             }
-            // Navigate to MainActivity
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
+            buttonTestSubmit.isEnabled = false
+            showConfirmPopupMA(this, R.id.MiniAceTestActivity)
+
 
         }
         }

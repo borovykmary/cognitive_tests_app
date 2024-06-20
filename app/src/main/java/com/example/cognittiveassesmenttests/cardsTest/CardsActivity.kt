@@ -31,6 +31,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopupTest
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -358,6 +359,7 @@ class CardsActivity : AppCompatActivity() {
                         dragCounter--
                         // Check if the drag counter has reached 0
                         if (dragCounter == 0) {
+
                             // Display a toast message with correct answers and elapsed time
                             Toast.makeText(this, "No more drags allowed. Correct answers: $correctAnswers. Time: ${textViewTime.text}", Toast.LENGTH_SHORT).show()
 
@@ -379,11 +381,8 @@ class CardsActivity : AppCompatActivity() {
                                     .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
                                     .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
                             }
-                            // Create an intent to start MainActivity
-                            val intent = Intent(this, MainActivity::class.java)
-                            // Start MainActivity
-                            startActivity(intent)
-                            finish()
+                            showConfirmPopupTest(this@CardsActivity, R.id.CardsActivity)
+
                         } else {
                             // Revert any remaining style changes
                             imageViewAnswer.scaleX = 1f

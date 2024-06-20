@@ -23,8 +23,12 @@ import com.example.cognittiveassesmenttests.MiniAceTest4
 import com.example.cognittiveassesmenttests.MiniAceTest5
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopupMA
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class MiniAceTestActivity : AppCompatActivity() {
 
@@ -50,7 +54,6 @@ class MiniAceTestActivity : AppCompatActivity() {
         buttonTestSubmit.isEnabled = false
         nextButton.setOnClickListener {
         val currentFragment = (viewPager.adapter as MiniAceTestAdapter).getCurrentFragment(viewPager.currentItem)
-            Log.d("MiniAce", "Current fragment:" + currentFragment)
             val view = currentFragment?.view
             Log.d("MiniAce", "Current fragment view:" + view)
             if (view != null) {
@@ -150,7 +153,10 @@ class MiniAceTestActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-
+            val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+            val currentDate = sdf.format(Date())
+            dataMap["DateTime"] = currentDate
+            dataMap["userID"] = FirebaseAuth.getInstance().currentUser?.uid.toString()
             dataMap["Time"] = textViewTime.text.toString()
 
             // Send dataMap to the subcollection TestMA in a collection with a name that equals the Firebase user id

@@ -3,6 +3,7 @@ package com.example.cognittiveassesmenttests.user_interaction
 import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
+import com.example.cognittiveassesmenttests.AdminActivity
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -34,10 +35,16 @@ class LoginUser(private val activity: Activity) {
     auth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
+                if (Firebase.auth.currentUser!!.uid == "5nAFaPGB0MMeeRPf2Qea4PhDFtz2"){
+                    Toast.makeText(activity, "Logged in successfully admin", Toast.LENGTH_SHORT).show()
+                    val intent = Intent(activity, AdminActivity::class.java)
+                    activity.startActivity(intent)
+                } else {
                 // User logged in successfully
                 Toast.makeText(activity, "Logged in successfully", Toast.LENGTH_SHORT).show()
                 val intent = Intent(activity, MainActivity::class.java)
                 activity.startActivity(intent)
+                }
                 } else {
                 // Login failed
                 Toast.makeText(activity, "Login failed", Toast.LENGTH_SHORT).show()

@@ -49,8 +49,7 @@ class SDMTActivity : AppCompatActivity() {
             override fun onFinish() {
                 textViewTime.text = "00:00"
                 // Show the number of correct answers in a Toast message
-                Toast.makeText(this@SDMTActivity, "Correct answers: $correctAnswers", Toast.LENGTH_LONG).show()
-                // Calculate the percentage of correct answers
+
                 val correctPercentage = if (totalAnswers > 0) (correctAnswers.toDouble() / totalAnswers) * 100 else 0.0
                 val roundedPercentage = String.format("%.1f", correctPercentage)
                 // Create a dataMap to store the number of correct answers
@@ -142,9 +141,6 @@ class SDMTActivity : AppCompatActivity() {
                 // Check if the clicked key matches the current key in imageViewKeyQuestion
                 if (imageViewToDrawableMap[imageViews[i]] == currentKey) {
                     correctAnswers++
-                    Toast.makeText(this, "Right answer", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Wrong answer", Toast.LENGTH_SHORT).show()
                 }
 
                 // Trigger a click on imageViewNumbersAnswer to shuffle everything

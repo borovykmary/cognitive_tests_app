@@ -318,10 +318,8 @@ class CardsActivity : AppCompatActivity() {
                                 correctAnswersInRow++
                                 correctAnswers++
                                 textViewCounter.text = String.format("%02d/64", correctAnswers)
-                                Toast.makeText(this, "Successful", Toast.LENGTH_SHORT).show()
                             } else {
                                 correctAnswersInRow = 0
-                                Toast.makeText(this, "Incorrect", Toast.LENGTH_SHORT).show()
                             }
 
                             // If 10 correct answers in a row, randomly change the condition
@@ -359,9 +357,6 @@ class CardsActivity : AppCompatActivity() {
                         dragCounter--
                         // Check if the drag counter has reached 0
                         if (dragCounter == 0) {
-
-                            // Display a toast message with correct answers and elapsed time
-                            Toast.makeText(this, "No more drags allowed. Correct answers: $correctAnswers. Time: ${textViewTime.text}", Toast.LENGTH_SHORT).show()
 
                             // Disable further dragging
                             imageViewAnswer.setOnLongClickListener(null)

@@ -1,6 +1,7 @@
 package com.example.cognittiveassesmenttests
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,9 +33,12 @@ class AdminActivity : AppCompatActivity() {
                 val userId = user.id
                 db.collection("Users").document(userId).collection("TestMA").get().addOnSuccessListener { tests ->
                     for (test in tests) {
-                        testData.add(test.data)
+                        val dataWithId = test.data.toMutableMap()
+                        dataWithId["id"] = test.id // Add the document ID to the data map
+                        testData.add(dataWithId)
+                        Log.d("DATAACTIVITY", "DATA: " + dataWithId["id"])
                     }
-                    val adapter = TestRecordAdapterAdminMA(testData) { data ->
+                    val adapter = TestRecordAdapterAdminMA(testData, supportFragmentManager) { data ->
                         // Handle confirm action
                     }
                     recyclerView.adapter = adapter

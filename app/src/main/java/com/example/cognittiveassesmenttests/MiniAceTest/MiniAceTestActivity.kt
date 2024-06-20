@@ -150,7 +150,7 @@ class MiniAceTestActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-
+            dataMap["userID"] = FirebaseAuth.getInstance().currentUser?.uid.toString()
             dataMap["Time"] = textViewTime.text.toString()
 
             // Send dataMap to the subcollection TestMA in a collection with a name that equals the Firebase user id

@@ -1,5 +1,6 @@
 package com.example.cognittiveassesmenttests.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,15 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cognittiveassesmenttests.MADetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.helpers.ConfirmPopupAdminFragment
 
 class TestRecordAdapterAdminMA(
     private val dataList: List<Map<String, Any>>,
+    private val fragmentManager: FragmentManager,
     private val onConfirm: (data: Map<String, Any>) -> Unit
 ) : RecyclerView.Adapter<TestRecordAdapterAdminMA.ViewHolder>() {
 
@@ -112,7 +117,12 @@ class TestRecordAdapterAdminMA(
         holder.input5.setSelection(0)
 
         holder.confirmButton.setOnClickListener {
-            onConfirm(data)
+            Log.d("Adapter", "DOCUEMNT ID: " + data["id"].toString())
+            // Create an instance of the dialog fragment
+            val dialog = ConfirmPopupAdminFragment(data["id"].toString(),
+                data["userID"].toString(), holder.input1, holder.input2, holder.input3, holder.input4, holder.input5)
+            // Show the dialog
+            dialog.show(fragmentManager, "ConfirmDialog")
         }
 
     }

@@ -34,6 +34,10 @@ class AdminActivity : AppCompatActivity() {
                 db.collection("Users").document(userId).collection("TestMA").get().addOnSuccessListener { tests ->
                     for (test in tests) {
                         val dataWithId = test.data.toMutableMap()
+                        // Check if the document has the field "MEMORY"
+                        if (dataWithId.containsKey("MEMORY")) {
+                            continue // Skip this document
+                        }
                         dataWithId["id"] = test.id // Add the document ID to the data map
                         testData.add(dataWithId)
                         Log.d("DATAACTIVITY", "DATA: " + dataWithId["id"])

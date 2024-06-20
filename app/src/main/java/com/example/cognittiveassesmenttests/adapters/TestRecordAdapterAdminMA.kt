@@ -1,5 +1,7 @@
 package com.example.cognittiveassesmenttests.adapters
 
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -42,6 +44,7 @@ class TestRecordAdapterAdminMA(
         val input4: Spinner = itemView.findViewById(R.id.input4)
         val input5: Spinner = itemView.findViewById(R.id.input5)
         val confirmButton: Button = itemView.findViewById(R.id.confirm_button)
+        val downloadButton: Button = itemView.findViewById(R.id.download_button)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -115,6 +118,14 @@ class TestRecordAdapterAdminMA(
         adapter5.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         holder.input5.adapter = adapter5
         holder.input5.setSelection(0)
+
+
+        holder.downloadButton.setOnClickListener {
+            val url = data["DrawingImageURL"] as String
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            holder.itemView.context.startActivity(intent)
+        }
 
         holder.confirmButton.setOnClickListener {
             Log.d("Adapter", "DOCUEMNT ID: " + data["id"].toString())

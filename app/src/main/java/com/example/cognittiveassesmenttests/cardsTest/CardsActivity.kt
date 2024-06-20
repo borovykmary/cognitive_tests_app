@@ -33,6 +33,9 @@ import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 //import androidx.activity.compose.setContent
 
@@ -362,7 +365,10 @@ class CardsActivity : AppCompatActivity() {
                             imageViewAnswer.setOnLongClickListener(null)
                             // Create a dataMap to store the number of correct answers and time
                             val dataMap = hashMapOf<String, Any>()
-                            dataMap["CorrectAnswers"] = correctAnswers
+                            val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                            val currentDate = sdf.format(Date())
+                            dataMap["Date"] = currentDate
+                            dataMap["CorrectAnswers"] = correctAnswers.toString()
                             dataMap["Time"] = textViewTime.text.toString()
 
                             // Send dataMap to the subcollection TestWC in a collection with a name that equals the Firebase user id

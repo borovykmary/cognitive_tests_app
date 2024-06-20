@@ -32,7 +32,7 @@ class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, priva
         holder.testDetails.text = testRecord.testDetails
 
         holder.testDetails.setOnClickListener {
-            val dialog = CardsDetailsDialogFragment()
+            val dialog = CardsDetailsDialogFragment.newInstance(testRecord)
             dialog.show(fragmentManager, "DetailsDialogFragment")
         }
     }

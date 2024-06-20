@@ -362,7 +362,7 @@ class CardsActivity : AppCompatActivity() {
                             imageViewAnswer.setOnLongClickListener(null)
                             // Create a dataMap to store the number of correct answers and time
                             val dataMap = hashMapOf<String, Any>()
-                            dataMap["CorrectAnswers"] = correctAnswers
+                            dataMap["CorrectAnswers"] = correctAnswers.toString()
                             dataMap["Time"] = textViewTime.text.toString()
 
                             // Send dataMap to the subcollection TestWC in a collection with a name that equals the Firebase user id

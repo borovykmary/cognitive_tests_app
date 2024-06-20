@@ -1,6 +1,7 @@
 package com.example.cognittiveassesmenttests.MiniAceTest
 
 import android.content.Intent
+import android.graphics.Bitmap
 import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.Handler
@@ -25,11 +26,16 @@ import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageException
+import java.io.ByteArrayOutputStream
+import java.util.UUID
 
 class MiniAceTestActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var imageViewCounter: ImageView
+    private var data: ByteArray = byteArrayOf()
     private val dataMap = HashMap<String, String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +56,6 @@ class MiniAceTestActivity : AppCompatActivity() {
         buttonTestSubmit.isEnabled = false
         nextButton.setOnClickListener {
         val currentFragment = (viewPager.adapter as MiniAceTestAdapter).getCurrentFragment(viewPager.currentItem)
-            Log.d("MiniAce", "Current fragment:" + currentFragment)
             val view = currentFragment?.view
             Log.d("MiniAce", "Current fragment view:" + view)
             if (view != null) {
@@ -92,6 +97,14 @@ class MiniAceTestActivity : AppCompatActivity() {
 
                     is MiniAceTest4 -> {
                         Log.d("MiniAce", "Data for Mini4: " + dataMap)
+                        val drawingView = view.findViewById<com.example.cognittiveassesmenttests.helpers.DrawingView>(R.id.drawingView)
+                        val bitmap = drawingView.saveCanvas()
+
+                        // Convert the Bitmap to a byte array
+                        val baos = ByteArrayOutputStream()
+                        bitmap?.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                        data = baos.toByteArray()
+
                     }
 
                     is MiniAceTest5 -> {
@@ -146,21 +159,49 @@ class MiniAceTestActivity : AppCompatActivity() {
             handler.postDelayed(runnable, 1000)
 
         buttonTestSubmit.setOnClickListener {
+
+            Log.e("Firebase", "Upload started 1")
+            // Create a reference to Firebase Storage where you want to store the image
+            val storageRef = FirebaseStorage.getInstance().reference
+            val imagesRef = storageRef.child("images/${UUID.randomUUID()}.jpg")
+            Log.e("Firebase", "Upload started 2")
+
+            // Upload the byte array to Firebase Storage
+            val uploadTask = imagesRef.putBytes(data)
+            uploadTask.addOnFailureListener {
+                    exception ->
+                // Handle unsuccessful uploads
+                Log.e("Firebase", "Upload failed", exception)
+                if (exception is StorageException) {
+                    val errorCode = exception.errorCode
+                    val httpResult = exception.httpResultCode
+                    Log.e("Firebase", "Error code: $errorCode, HTTP result: $httpResult")
+                }
+
+                // Handle unsuccessful uploads
+            }.addOnSuccessListener { taskSnapshot ->
+                // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                // Get the download URL of the image
+                imagesRef.downloadUrl.addOnSuccessListener { uri ->
+                    // Store the download URL in Firestore
+                    val downloadUrl = uri.toString()
+                    Log.d("Firebase", "Download URL: $downloadUrl")
+                    dataMap["DrawingImageURL"] = downloadUrl
+                    dataMap["Time"] = textViewTime.text.toString()
+                    val userId = FirebaseAuth.getInstance().currentUser?.uid
+                    if (userId != null) {
+                        val db = FirebaseFirestore.getInstance()
+                        db.collection("Users").document(userId).collection("TestMA").document().set(dataMap)
+                            .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
+                            .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
+                    }
+                }
+            }
             // Navigate to MainActivity
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
 
-            dataMap["Time"] = textViewTime.text.toString()
-
-            // Send dataMap to the subcollection TestMA in a collection with a name that equals the Firebase user id
-            val userId = FirebaseAuth.getInstance().currentUser?.uid
-            if (userId != null) {
-                val db = FirebaseFirestore.getInstance()
-                db.collection("Users").document(userId).collection("TestMA").document().set(dataMap)
-                    .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
-                    .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
-            }
         }
         }
 

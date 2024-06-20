@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
 
-        android:fontFamily="@font/inter_regular"
+        android:fontFamily="@font/poppins_regular"
         android:text="We are here to help you!"
         android:textColor="@color/white"
 
@@ -216,7 +216,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/gradient_rounded_button"
 
-        android:fontFamily="@font/inter_medium"
+        android:fontFamily="@font/poppins_semibold"
         android:text="Create Account"
         android:textAllCaps="false"
         android:textColor="@color/white"
@@ -231,7 +231,7 @@
         android:id="@+id/textViewCreate1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/inter_semibold"
+        android:fontFamily="@font/poppins_semibold"
 
         android:text="Create Account"
         android:textColor="@color/white"

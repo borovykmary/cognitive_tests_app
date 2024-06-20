@@ -1,7 +1,11 @@
 package com.example.cognittiveassesmenttests.dataClasses
 
 data class TestRecordMA(
-    val testName: String,
     val testDate: String,
-    val testDetails: String
+    val testTime: String,
+    val attentionScore: String,
+    val clockDrawingScore: String,
+    val memoryScore: String,
+    val fluencyScore: String,
+    val memoryRecallScore: String,
 )

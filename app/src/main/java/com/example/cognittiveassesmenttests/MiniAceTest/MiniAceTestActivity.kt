@@ -195,6 +195,7 @@ class MiniAceTestActivity : AppCompatActivity() {
                      val currentDate = sdf.format(Date())
                     dataMap["DateTime"] = currentDate
                     dataMap["DrawingImageURL"] = downloadUrl
+                    dataMap["userID"] = FirebaseAuth.getInstance().currentUser?.uid.toString()
                     dataMap["Time"] = textViewTime.text.toString()
                     val userId = FirebaseAuth.getInstance().currentUser?.uid
                     if (userId != null) {

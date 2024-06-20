@@ -24,12 +24,17 @@ import com.example.cognittiveassesmenttests.MiniAceTest4
 import com.example.cognittiveassesmenttests.MiniAceTest5
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopupMA
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageException
 import java.io.ByteArrayOutputStream
 import java.util.UUID
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
+
 
 class MiniAceTestActivity : AppCompatActivity() {
 
@@ -186,6 +191,9 @@ class MiniAceTestActivity : AppCompatActivity() {
                     // Store the download URL in Firestore
                     val downloadUrl = uri.toString()
                     Log.d("Firebase", "Download URL: $downloadUrl")
+                     val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                     val currentDate = sdf.format(Date())
+                    dataMap["DateTime"] = currentDate
                     dataMap["DrawingImageURL"] = downloadUrl
                     dataMap["Time"] = textViewTime.text.toString()
                     val userId = FirebaseAuth.getInstance().currentUser?.uid

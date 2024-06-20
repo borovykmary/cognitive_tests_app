@@ -33,6 +33,9 @@ import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 //import androidx.activity.compose.setContent
 
@@ -362,6 +365,9 @@ class CardsActivity : AppCompatActivity() {
                             imageViewAnswer.setOnLongClickListener(null)
                             // Create a dataMap to store the number of correct answers and time
                             val dataMap = hashMapOf<String, Any>()
+                            val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                            val currentDate = sdf.format(Date())
+                            dataMap["Date"] = currentDate
                             dataMap["CorrectAnswers"] = correctAnswers.toString()
                             dataMap["Time"] = textViewTime.text.toString()
 

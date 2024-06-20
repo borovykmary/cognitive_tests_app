@@ -16,6 +16,9 @@ import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 class SDMTActivity : AppCompatActivity() {
     // Create a map to store the mapping of image views to drawable resources
@@ -48,7 +51,10 @@ class SDMTActivity : AppCompatActivity() {
 
                 // Create a dataMap to store the number of correct answers
                 val dataMap = hashMapOf<String, Any>()
-                dataMap["CorrectAnswers"] = correctAnswers
+                val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                val currentDate = sdf.format(Date())
+                dataMap["Date"] = currentDate
+                dataMap["CorrectAnswers"] = correctAnswers.toString()
 
                 // Send dataMap to the subcollection TestSDMT in a collection with a name that equals the Firebase user id
                 val userId = FirebaseAuth.getInstance().currentUser?.uid

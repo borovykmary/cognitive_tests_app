@@ -168,29 +168,15 @@
         android:id="@+id/totalMA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="108dp"
         android:fontFamily="@font/poppins_semibold"
         android:text="Total: 17/30"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView28"
-        app:layout_constraintEnd_toEndOf="@+id/memoryRecallScore"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/memoryRecallScore" />
-
-    <TextView
-        android:id="@+id/textView28"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="96dp"
-        android:fontFamily="@font/poppins_regular"
-        android:text="Comment: ycvhhhu yy7t8"
-        android:textColor="@color/green_haki"
-        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toEndOf="@+id/totalMA"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/totalMA" />
+        app:layout_constraintEnd_toEndOf="@+id/memoryRecallScore"
+        app:layout_constraintHorizontal_bias="0.133"
+        app:layout_constraintStart_toStartOf="@+id/memoryRecallScore" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

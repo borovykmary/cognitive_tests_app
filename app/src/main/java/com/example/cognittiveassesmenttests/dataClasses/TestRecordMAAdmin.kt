@@ -1,6 +1,9 @@
 package com.example.cognittiveassesmenttests.dataClasses
 
-
+/**
+ * A data class that represents a record of a MiniAce test for admin.
+ * It holds the test's properties, such as id, userID, various addresses, names, date, time, and drawing URL.
+ */
 data class TestRecordMAAdmin(
     val id: String,
     val userID: String,

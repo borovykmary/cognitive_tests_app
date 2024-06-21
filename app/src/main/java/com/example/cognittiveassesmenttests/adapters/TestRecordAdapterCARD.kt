@@ -11,8 +11,20 @@ import com.example.cognittiveassesmenttests.CardsDetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordCARD
 
+/**
+ * This class is an adapter for displaying CARD test records in a RecyclerView.
+ *
+ * @property testRecords The list of test records to display.
+ * @property fragmentManager The FragmentManager for showing the details dialog.
+ */
 class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
 
+    /**
+     * This class represents a view holder for a test record item.
+     *
+     * @property testDate The TextView for the test date.
+     * @property testDetails The TextView for the test details button.
+     */
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val testDate: TextView = view.findViewById(R.id.time)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)

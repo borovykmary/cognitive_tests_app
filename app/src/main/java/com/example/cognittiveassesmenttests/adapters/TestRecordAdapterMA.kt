@@ -12,8 +12,20 @@ import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.SDMTDetailsDialogFragment
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordMA
 
+/**
+ * This class is an adapter for displaying MiniAce test records in a RecyclerView.
+ *
+ * @property testRecords The list of test records to display.
+ * @property fragmentManager The FragmentManager for showing the details dialog.
+ */
 class TestRecordAdapterMA(private val testRecords: List<TestRecordMA>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterMA.TestRecordViewHolder>() {
 
+    /**
+     * This class represents a view holder for a test record item.
+     *
+     * @property testDate The TextView for the test date.
+     * @property testDetails The TextView for the test details button.
+     */
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val testDate: TextView = view.findViewById(R.id.time)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
@@ -23,6 +35,7 @@ class TestRecordAdapterMA(private val testRecords: List<TestRecordMA>, private v
         val view = LayoutInflater.from(parent.context).inflate(R.layout.test_record_item_ma, parent, false)
         return TestRecordViewHolder(view)
     }
+
 
     override fun onBindViewHolder(holder: TestRecordViewHolder, position: Int) {
         Log.d("RecordsFragment", "Test records: $testRecords")
@@ -34,6 +47,7 @@ class TestRecordAdapterMA(private val testRecords: List<TestRecordMA>, private v
             dialog.show(fragmentManager, "DetailsDialogFragment")
         }
     }
+
 
     override fun getItemCount() = testRecords.size
 }

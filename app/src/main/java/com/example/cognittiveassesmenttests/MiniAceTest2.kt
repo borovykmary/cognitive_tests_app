@@ -30,38 +30,53 @@ class MiniAceTest2 : Fragment() {
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
-    mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message0)
         var counter: Int = 0
         var mediaCounter = 0
-        val randomValue = (0..1).random()
+        val randomValue = (0..3).random()
+        mediaPlayer = MediaPlayer()
 
     val playButton = view.findViewById<ImageView>(R.id.play_button)
 
-            playButton.setOnClickListener {
-                if (counter < 3) {
+        playButton.setOnClickListener {
+            if (counter < 3) {
+                if (mediaPlayer.isPlaying) {
+                    mediaPlayer.stop()
+                    mediaPlayer.reset()
+                }
 
-                    if (!mediaPlayer.isPlaying) {
-                        mediaPlayer.start()
-                        counter++
-                    } else {
-                        mediaPlayer.stop()
-                        mediaPlayer.reset()
-                        if(mediaCounter == 0) {
-                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_start)
-                            mediaCounter++
-                        } else {
-                            if(randomValue < 0.5) {
-                                mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message0)
-                            } else {
-                                mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message1)
-                            }
+                if(mediaCounter == 0) {
+                    when (randomValue) {
+                        1 -> {
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_pair_1_start)
+                        }
+                        2 -> {
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_pair_2_start)
+                        }
+                        else -> {
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_pair_3_start)
                         }
                     }
+                    mediaCounter++
                 } else {
-                    Toast.makeText(requireContext(), "You cannot listen to audio anymore", Toast.LENGTH_SHORT).show()
+                    when (randomValue) {
+                        1 -> {
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_pair_1_end)
+                        }
+                        2 -> {
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_pair_2_end)
+                        }
+                        else -> {
+                            mediaPlayer = MediaPlayer.create(requireContext(), R.raw.voice_message_pair_3_end)
+                        }
+                    }
                 }
+                mediaPlayer.start()
+                counter++
+            } else {
+                Toast.makeText(requireContext(), "You cannot listen to audio anymore", Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
     override fun onDestroy() {
         super.onDestroy()

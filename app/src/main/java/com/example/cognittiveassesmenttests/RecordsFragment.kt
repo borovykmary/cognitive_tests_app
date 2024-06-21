@@ -24,22 +24,14 @@ import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 /**
- * A simple [Fragment] subclass.
- * Use the [RecordsFragment.newInstance] factory method to
- * create an instance of this fragment.
+ * This fragment displays the user's test records.
  */
 class RecordsFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -49,6 +41,10 @@ class RecordsFragment : Fragment() {
 
     }
 
+    /**
+     * Called immediately after onCreateView(LayoutInflater, ViewGroup, Bundle) has returned,
+     * but before any saved state has been restored in to the view.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -172,6 +168,9 @@ class RecordsFragment : Fragment() {
 
 }
 
+/**
+ * This class represents a dialog fragment for the SDMT details.
+ */
 class SDMTDetailsDialogFragment : DialogFragment() {
     companion object {
         fun newInstance(testRecord: TestRecordSDMT): SDMTDetailsDialogFragment {
@@ -183,6 +182,10 @@ class SDMTDetailsDialogFragment : DialogFragment() {
             return fragment
         }
     }
+
+    /**
+     * Called to do initial creation of a fragment.
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -206,6 +209,10 @@ class SDMTDetailsDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }
+
+/**
+ * This class represents a dialog fragment for the Cards details.
+ */
 class CardsDetailsDialogFragment : DialogFragment() {
     companion object {
         fun newInstance(testRecord: TestRecordCARD): CardsDetailsDialogFragment {
@@ -218,6 +225,10 @@ class CardsDetailsDialogFragment : DialogFragment() {
             return fragment
         }
     }
+
+    /**
+     * Called to do initial creation of a fragment.
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
@@ -244,6 +255,10 @@ class CardsDetailsDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }
+
+/**
+ * This class represents a dialog fragment for the MA details.
+ */
 class MADetailsDialogFragment : DialogFragment() {
     companion object {
         fun newInstance(testRecord: TestRecordMA): MADetailsDialogFragment {
@@ -260,6 +275,10 @@ class MADetailsDialogFragment : DialogFragment() {
             return fragment
         }
     }
+
+    /**
+     * Called to do initial creation of a fragment.
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)

@@ -21,6 +21,10 @@ import com.example.cognittiveassesmenttests.helpers.drawableToBitmap
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+/**
+ * This fragment represents the home screen of the application.
+ * It displays general information and options for the user to navigate to different parts of the application.
+ */
 class HomeFragment : Fragment() {
 
     override fun onCreateView(

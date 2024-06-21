@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.example.cognittiveassesmenttests.helpers.DrawingView
 
+/**
+ * This fragment represents the fourth test in the MiniAce series.
+ * It includes a drawing view and a clear button to clear the canvas.
+ * The layout for this fragment is defined in `R.layout.fragment_mini_ace_test4`.
+ */
 class MiniAceTest4 : Fragment() {
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

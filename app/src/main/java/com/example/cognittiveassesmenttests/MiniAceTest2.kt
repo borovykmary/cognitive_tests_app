@@ -10,16 +10,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 
-
+/**
+ * This fragment represents the second test in the MiniAce series.
+ * It includes functionality for playing audio files and limiting the number of times they can be played.
+ * The layout for this fragment is defined in `R.layout.fragment_mini_ace_test2`.
+ */
 class MiniAceTest2 : Fragment() {
 
     private lateinit var mediaPlayer: MediaPlayer
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -64,8 +62,6 @@ class MiniAceTest2 : Fragment() {
                 }
             }
         }
-
-
 
     override fun onDestroy() {
         super.onDestroy()

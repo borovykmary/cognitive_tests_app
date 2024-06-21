@@ -6,6 +6,10 @@ import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
+/**
+ * This class represents a custom view for drawing.
+ * It includes functionality for drawing on the view, clearing the canvas, and saving the canvas as a bitmap.
+ */
 class DrawingView(context: Context, attrs: AttributeSet) : View(context, attrs) {
     private var mDrawPath: Path = Path()
     private var mDrawPaint: Paint = Paint()

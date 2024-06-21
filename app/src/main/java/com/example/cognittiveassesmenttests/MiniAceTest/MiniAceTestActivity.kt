@@ -1,8 +1,6 @@
 package com.example.cognittiveassesmenttests.MiniAceTest
 
-import android.content.Intent
 import android.graphics.Bitmap
-import android.media.MediaPlayer
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.os.Handler
@@ -13,13 +11,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.MiniAceTest1
 import com.example.cognittiveassesmenttests.MiniAceTest2
 import com.example.cognittiveassesmenttests.MiniAceTest3
@@ -38,7 +32,13 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
+/**
+ * This activity handles the MiniAce test.
+ * It includes a countdown timer for the test duration and displays the remaining time.
+ * It also handles the logic for the test, including navigating through the test pages and submitting the test.
+ * The results of the test are stored in a Firestore database.
+ * It also handles edge-to-edge screen display.
+ */
 class MiniAceTestActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2

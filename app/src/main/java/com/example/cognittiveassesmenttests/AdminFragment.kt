@@ -11,7 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.adapters.TestRecordAdapterAdminMA
 import com.google.firebase.firestore.FirebaseFirestore
 
-
+/**
+ * This fragment is accessible only to admin users.
+ * It provides functionality for managing the application, such as adding new tests or viewing user data.
+ */
 class AdminFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

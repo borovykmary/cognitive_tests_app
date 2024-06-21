@@ -9,6 +9,10 @@ import com.example.cognittiveassesmenttests.MiniAceTest3
 import com.example.cognittiveassesmenttests.MiniAceTest4
 import com.example.cognittiveassesmenttests.MiniAceTest5
 
+/**
+ * This adapter handles the fragments for the MiniAce test.
+ * It includes methods for creating fragments and getting the current fragment.
+ */
 class MiniAceTestAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
     private val fragmentList = arrayListOf<Fragment>(
         MiniAceTest1(),

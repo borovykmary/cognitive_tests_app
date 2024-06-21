@@ -13,6 +13,11 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 import com.google.firebase.auth.FirebaseAuth
 
+/**
+ * This class represents a confirmation popup for the admin fragment.
+ * It includes functionality for confirming test results and storing them in Firebase.
+ */
+
 class ConfirmPopupAdminFragment(
     private val id: String,
     private val userId: String,

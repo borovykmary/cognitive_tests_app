@@ -15,6 +15,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 
+/**
+ * This file contains a function to show a confirmation popup for the MiniAce test.
+ * The popup includes a submit button that starts MainActivity when clicked.
+ */
+
+/**
+ * Shows a confirmation popup for the MiniAce test.
+ *
+ * @param activity The activity where the popup is shown.
+ * @param rootLayoutId The ID of the root layout.
+ */
 fun showConfirmPopupMA(activity: AppCompatActivity, rootLayoutId: Int) {
 
         // Inflate the confirm_popup layout

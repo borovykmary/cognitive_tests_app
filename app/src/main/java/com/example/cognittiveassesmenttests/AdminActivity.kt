@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.adapters.TestRecordAdapterAdminMA
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -39,6 +41,18 @@ class AdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, AdminFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_home)
+        }
+
+        // Fetch user data from Firebase
+        val user = FirebaseAuth.getInstance().currentUser
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Users").document(user?.uid!!).get().addOnSuccessListener { document ->
+            val name = document.getString("name")
+
+            // Update userNameText in nav_header
+            val headerView = navigationView.getHeaderView(0)
+            val userNameText = headerView.findViewById<TextView>(R.id.userNameText)
+            userNameText.text = name
         }
 
     }

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -17,6 +18,8 @@ import com.example.cognittiveassesmenttests.MiniAceTest.MiniAceInfoActivity
 import com.example.cognittiveassesmenttests.cardsTest.CardInfoActivity
 import com.example.cognittiveassesmenttests.helpers.blurBitmap
 import com.example.cognittiveassesmenttests.helpers.drawableToBitmap
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -29,7 +32,6 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HomeFragment : Fragment() {
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -45,7 +47,16 @@ class HomeFragment : Fragment() {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val textView = view.findViewById<TextView>(R.id.textView10)
 
+        // Fetch user data from Firebase
+        val user = FirebaseAuth.getInstance().currentUser
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Users").document(user?.uid!!).get().addOnSuccessListener { document ->
+            val name = document.getString("name")
+            textView.text = "Hello, $name!"
+
+        }
         val imageView = view.findViewById<ImageView>(R.id.imageView3)
         val bitmap = drawableToBitmap(R.drawable.bg_gradient_home, requireContext())
         val blurredBitmap = blurBitmap(bitmap, requireContext(), 0.1f, 25f)

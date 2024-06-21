@@ -26,6 +26,10 @@ fun showConfirmPopup(buttonId: Int, activity: AppCompatActivity, rootLayoutId: I
         val height = LinearLayout.LayoutParams.WRAP_CONTENT
         val popupWindow = PopupWindow(popupView, width, height, true)
 
+        // Prevent the popup from being dismissed by a touch event outside of it
+        popupWindow.isOutsideTouchable = false
+        popupWindow.isFocusable = false
+
         // Create a semi-transparent overlay
         val overlay = View(activity)
         overlay.setBackgroundColor(Color.parseColor("#A6000000")) // Semi-transparent black color

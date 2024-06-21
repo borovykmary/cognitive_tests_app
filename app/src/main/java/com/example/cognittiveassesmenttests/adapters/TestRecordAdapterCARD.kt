@@ -14,7 +14,6 @@ import com.example.cognittiveassesmenttests.dataClasses.TestRecordCARD
 class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testName: TextView = view.findViewById(R.id.TestResultCARD)
         val testDate: TextView = view.findViewById(R.id.time)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
@@ -27,9 +26,7 @@ class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, priva
     override fun onBindViewHolder(holder: TestRecordViewHolder, position: Int) {
         Log.d("RecordsFragment", "Test records: $testRecords")
         val testRecord = testRecords[position]
-        holder.testName.text = testRecord.testName
         holder.testDate.text = testRecord.testDate
-        holder.testDetails.text = testRecord.testDetails
 
         holder.testDetails.setOnClickListener {
             val dialog = CardsDetailsDialogFragment.newInstance(testRecord)

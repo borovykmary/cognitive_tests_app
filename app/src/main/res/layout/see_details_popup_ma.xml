@@ -51,7 +51,7 @@
         app:layout_constraintVertical_bias="0.078" />
 
     <TextView
-        android:id="@+id/textView18"
+        android:id="@+id/timeMA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
@@ -59,7 +59,7 @@
         android:text="Total Time: 7:07min"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView20"
+        app:layout_constraintBottom_toTopOf="@+id/dateMA"
         app:layout_constraintEnd_toEndOf="@+id/imageView13"
         app:layout_constraintHorizontal_bias="0.151"
         app:layout_constraintStart_toStartOf="@+id/imageView13"
@@ -67,7 +67,7 @@
         app:layout_constraintVertical_bias="0.702" />
 
     <TextView
-        android:id="@+id/textView20"
+        android:id="@+id/dateMA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -76,9 +76,9 @@
         android:textColor="@color/green_haki"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView21"
-        app:layout_constraintEnd_toEndOf="@+id/textView18"
+        app:layout_constraintEnd_toEndOf="@+id/timeMA"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView18" />
+        app:layout_constraintStart_toStartOf="@+id/timeMA" />
 
     <TextView
         android:id="@+id/textView21"
@@ -89,13 +89,13 @@
         android:text="Score"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView22"
-        app:layout_constraintEnd_toEndOf="@+id/textView20"
+        app:layout_constraintBottom_toTopOf="@+id/attentionScore"
+        app:layout_constraintEnd_toEndOf="@+id/dateMA"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView20" />
+        app:layout_constraintStart_toStartOf="@+id/dateMA" />
 
     <TextView
-        android:id="@+id/textView22"
+        android:id="@+id/attentionScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -103,13 +103,13 @@
         android:fontFamily="@font/poppins_regular"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView23"
+        app:layout_constraintBottom_toTopOf="@+id/memoryScore"
         app:layout_constraintEnd_toEndOf="@+id/textView21"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/textView21" />
 
     <TextView
-        android:id="@+id/textView23"
+        android:id="@+id/memoryScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -117,13 +117,13 @@
         android:text="Memory: 2/7"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView24"
-        app:layout_constraintEnd_toEndOf="@+id/textView22"
+        app:layout_constraintBottom_toTopOf="@+id/fluencyScore"
+        app:layout_constraintEnd_toEndOf="@+id/attentionScore"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView22" />
+        app:layout_constraintStart_toStartOf="@+id/attentionScore" />
 
     <TextView
-        android:id="@+id/textView24"
+        android:id="@+id/fluencyScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -131,13 +131,13 @@
         android:text="Fluency: 3/7"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView25"
-        app:layout_constraintEnd_toEndOf="@+id/textView23"
+        app:layout_constraintBottom_toTopOf="@+id/visuospatialScore"
+        app:layout_constraintEnd_toEndOf="@+id/memoryScore"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView23" />
+        app:layout_constraintStart_toStartOf="@+id/memoryScore" />
 
     <TextView
-        android:id="@+id/textView25"
+        android:id="@+id/visuospatialScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -145,13 +145,13 @@
         android:text="Visuospatial: 1/5"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView26"
-        app:layout_constraintEnd_toEndOf="@+id/textView24"
+        app:layout_constraintBottom_toTopOf="@+id/memoryRecallScore"
+        app:layout_constraintEnd_toEndOf="@+id/fluencyScore"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView24" />
+        app:layout_constraintStart_toStartOf="@+id/fluencyScore" />
 
     <TextView
-        android:id="@+id/textView26"
+        android:id="@+id/memoryRecallScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -159,13 +159,13 @@
         android:text="Memory Recall: 3/7"
         android:textColor="@color/green_haki"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/textView27"
-        app:layout_constraintEnd_toEndOf="@+id/textView25"
+        app:layout_constraintBottom_toTopOf="@+id/totalMA"
+        app:layout_constraintEnd_toEndOf="@+id/visuospatialScore"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView25" />
+        app:layout_constraintStart_toStartOf="@+id/visuospatialScore" />
 
     <TextView
-        android:id="@+id/textView27"
+        android:id="@+id/totalMA"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
@@ -174,9 +174,9 @@
         android:textColor="@color/green_haki"
         android:textSize="16sp"
         app:layout_constraintBottom_toTopOf="@+id/textView28"
-        app:layout_constraintEnd_toEndOf="@+id/textView26"
+        app:layout_constraintEnd_toEndOf="@+id/memoryRecallScore"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView26" />
+        app:layout_constraintStart_toStartOf="@+id/memoryRecallScore" />
 
     <TextView
         android:id="@+id/textView28"
@@ -188,9 +188,9 @@
         android:textColor="@color/green_haki"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView13"
-        app:layout_constraintEnd_toEndOf="@+id/textView27"
+        app:layout_constraintEnd_toEndOf="@+id/totalMA"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView27" />
+        app:layout_constraintStart_toStartOf="@+id/totalMA" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

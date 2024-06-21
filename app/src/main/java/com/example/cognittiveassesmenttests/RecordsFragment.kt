@@ -21,6 +21,8 @@ import com.example.cognittiveassesmenttests.dataClasses.TestRecordMA
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordSDMT
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,22 +57,89 @@ class RecordsFragment : Fragment() {
         val recyclerViewCARD: RecyclerView = view.findViewById(R.id.testRecordsRecycleViewCARD)
         val db = FirebaseFirestore.getInstance()
         val userId = FirebaseAuth.getInstance().currentUser?.uid
-        val testRecords = mutableListOf<TestRecordCARD>()
+        val testRecordsCard = mutableListOf<TestRecordCARD>()
+        val testRecordsSDMT = mutableListOf<TestRecordSDMT>()
+        val testRecordsMA = mutableListOf<TestRecordMA>()
 
         if (userId != null) {
             db.collection("Users").document(userId).collection("TestWC").get()
                 .addOnSuccessListener { result ->
                     for (document in result) {
-                        val testName = "Wisconsin card sort task"
-                        val testDate = "todo"
-                        val testDetails = "SEE DETAILS"
+                        val inputFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+
+                        val inputDateStr = document.getString("Date")
+                        val date = inputFormat.parse(inputDateStr)
+                        val testDate = outputFormat.format(date)
+
                         val testScore = document.getString("CorrectAnswers")
                         val testTime = document.getString("Time")
-                        val testRecord = TestRecordCARD(testName, testDate, testDetails, testScore!!, testTime!!)
-                        testRecords.add(testRecord)
+                        val testRecord = TestRecordCARD(testDate!!, testScore!!, testTime!!)
+                        testRecordsCard.add(testRecord)
                     }
-                    val adapterCARD = TestRecordAdapterCARD(testRecords, childFragmentManager)
+                    val adapterCARD = TestRecordAdapterCARD(testRecordsCard, childFragmentManager)
                     recyclerViewCARD.adapter = adapterCARD
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("Firestore", "Error getting documents: ", exception)
+                }
+        }
+        if (userId != null) {
+            db.collection("Users").document(userId).collection("TestSDMT").get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        val inputFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+
+                        val inputDateStr = document.getString("Date")
+                        val date = inputFormat.parse(inputDateStr)
+                        val testDate = outputFormat.format(date)
+
+                        val testScore = document.getString("CorrectPercentage")
+                        val testRecord = TestRecordSDMT(testDate!!, testScore!!)
+                        testRecordsSDMT.add(testRecord)
+                    }
+                    val adapterSDMT = TestRecordAdapterSDMT(testRecordsSDMT, childFragmentManager)
+                    recyclerViewSDMT.adapter = adapterSDMT
+                }
+                .addOnFailureListener { exception ->
+                    Log.w("Firestore", "Error getting documents: ", exception)
+                }
+        }
+        if (userId != null) {
+            db.collection("Users").document(userId).collection("TestMA")
+                .get()
+                .addOnSuccessListener { result ->
+                    for (document in result) {
+                        if (document.contains("MEMORY") && document.getString("MEMORY") != null) {
+                        val inputFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                        val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+
+                        val inputDateStr = document.getString("DateTime")
+                        val date = inputFormat.parse(inputDateStr)
+                        val testDate = outputFormat.format(date)
+                        val testTime = document.getString("Time")
+
+                        val attentionScore = document.getString("ATTENTION")
+                        val clockDrawingScore = document.getString("CLOCK DRAWING")
+                        val memoryScore = document.getString("MEMORY")
+                        val fluencyScore = document.getString("FLUENCY")
+                        val memoryRecallScore = document.getString("MEMORY RECALL")
+
+                        val testRecord = TestRecordMA(
+                            testDate!!,
+                            testTime!!,
+                            attentionScore!!,
+                            clockDrawingScore!!,
+                            memoryScore!!,
+                            fluencyScore!!,
+                            memoryRecallScore!!
+                        )
+                        testRecordsMA.add(testRecord)
+                    }
+                }
+                    val adapterMA = TestRecordAdapterMA(testRecordsMA, childFragmentManager)
+                    recyclerViewMA.adapter = adapterMA
                 }
                 .addOnFailureListener { exception ->
                     Log.w("Firestore", "Error getting documents: ", exception)
@@ -80,30 +149,6 @@ class RecordsFragment : Fragment() {
         recyclerViewSDMT.layoutManager = LinearLayoutManager(context)
         recyclerViewMA.layoutManager = LinearLayoutManager(context)
         recyclerViewCARD.layoutManager = LinearLayoutManager(context)
-
-        val dataSetSDMT = listOf(
-            TestRecordSDMT("Symbol Digit Modalities Test Results", "2023-01-01", "SEE DETAILS"),
-            TestRecordSDMT("Symbol Digit Modalities Test Results", "2023-01-02", "SEE DETAILS"),
-            TestRecordSDMT("Symbol Digit Modalities Test Results", "2023-01-03", "SEE DETAILS")
-        )
-
-        val dataSetMA = listOf(
-            TestRecordMA("Mini Ace Test Results", "2023-01-01", "SEE DETAILS"),
-            TestRecordMA("Mini Ace Test Results", "2023-01-02", "SEE DETAILS"),
-            TestRecordMA("Mini Ace Test Results", "2023-01-03", "SEE DETAILS")
-        )
-
-        val dataSetCARD = listOf(
-            TestRecordCARD("Wisconsin Card Sort Task Results", "2023-01-01", "SEE DETAILS", "12/23", "2 min"),
-            TestRecordCARD("Wisconsin Card Sort Task Results", "2023-01-02", "SEE DETAILS", "10/23", "2 min"),
-            TestRecordCARD("Wisconsin Card Sort Task Results", "2023-01-03", "SEE DETAILS", "15/23", "3 min")
-        )
-
-        val adapterSDMT = TestRecordAdapterSDMT(dataSetSDMT, childFragmentManager)
-        val adapterMA = TestRecordAdapterMA(dataSetMA, childFragmentManager)
-
-        recyclerViewSDMT.adapter = adapterSDMT
-        recyclerViewMA.adapter = adapterMA
 
         view.findViewById<TextView>(R.id.SDMTResultsButton).setOnClickListener {
             recyclerViewSDMT.visibility = View.VISIBLE
@@ -128,11 +173,27 @@ class RecordsFragment : Fragment() {
 }
 
 class SDMTDetailsDialogFragment : DialogFragment() {
+    companion object {
+        fun newInstance(testRecord: TestRecordSDMT): SDMTDetailsDialogFragment {
+            val fragment = SDMTDetailsDialogFragment()
+            val args = Bundle()
+            args.putString("Date", testRecord.testDate)
+            args.putString("CorrectAnswers", testRecord.testScore)
+            fragment.arguments = args
+            return fragment
+        }
+    }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             val inflater: LayoutInflater = requireActivity().layoutInflater;
             val view = inflater.inflate(R.layout.see_details_popup_sdmt, null)
+
+            val scoreSDMT: TextView = view.findViewById(R.id.totalSDMC)
+            val date: TextView = view.findViewById(R.id.dateSDMC)
+
+            date.text = "Date: " + arguments?.getString("Date")
+            scoreSDMT.text = "Total: " + arguments?.getString("CorrectAnswers") + "/64"
 
             val closeButton: Button = view.findViewById(R.id.submitButton)
             closeButton.setOnClickListener {
@@ -150,6 +211,7 @@ class CardsDetailsDialogFragment : DialogFragment() {
         fun newInstance(testRecord: TestRecordCARD): CardsDetailsDialogFragment {
             val fragment = CardsDetailsDialogFragment()
             val args = Bundle()
+            args.putString("Date", testRecord.testDate)
             args.putString("CorrectAnswers", testRecord.testScore)
             args.putString("time", testRecord.testTime)
             fragment.arguments = args
@@ -164,9 +226,11 @@ class CardsDetailsDialogFragment : DialogFragment() {
 
             val scoreCARD: TextView = view.findViewById(R.id.totalCards)
             val time: TextView = view.findViewById(R.id.timeCards)
+            val date: TextView = view.findViewById(R.id.dateCards)
 
-            scoreCARD.text = arguments?.getString("CorrectAnswers")
-            time.text = arguments?.getString("time")
+            date.text = "Date: " + arguments?.getString("Date")
+            scoreCARD.text = "Total: " + arguments?.getString("CorrectAnswers") + "/64"
+            time.text = "Time: " + arguments?.getString("time")
 
 
             val closeButton: Button = view.findViewById(R.id.submitButton)
@@ -181,11 +245,43 @@ class CardsDetailsDialogFragment : DialogFragment() {
     }
 }
 class MADetailsDialogFragment : DialogFragment() {
+    companion object {
+        fun newInstance(testRecord: TestRecordMA): MADetailsDialogFragment {
+            val fragment = MADetailsDialogFragment()
+            val args = Bundle()
+            args.putString("DateTime", testRecord.testDate)
+            args.putString("ATTENTION", testRecord.attentionScore)
+            args.putString("MEMORY", testRecord.memoryScore)
+            args.putString("CLOCK DRAWING", testRecord.clockDrawingScore)
+            args.putString("FLUENCY", testRecord.fluencyScore)
+            args.putString("MEMORY RECALL", testRecord.memoryRecallScore)
+            args.putString("Time", testRecord.testTime)
+            fragment.arguments = args
+            return fragment
+        }
+    }
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             val inflater: LayoutInflater = requireActivity().layoutInflater;
             val view = inflater.inflate(R.layout.see_details_popup_ma, null)
+
+            val time: TextView = view.findViewById(R.id.timeMA)
+            val date: TextView = view.findViewById(R.id.dateMA)
+            val attention: TextView = view.findViewById(R.id.attentionScore)
+            val memory: TextView = view.findViewById(R.id.memoryScore)
+            val visuospatial: TextView = view.findViewById(R.id.visuospatialScore)
+            val fluency: TextView = view.findViewById(R.id.fluencyScore)
+            val memoryRecall: TextView = view.findViewById(R.id.memoryRecallScore)
+
+            date.text = "Date: " + arguments?.getString("DateTime")
+            time.text = "Time: " + arguments?.getString("Time")
+            attention.text = "Attention: " + arguments?.getString("ATTENTION") + "/4"
+            memory.text = "Memory: " + arguments?.getString("MEMORY") + "/7"
+            visuospatial.text = "Visuospatial: " + arguments?.getString("CLOCK DRAWING") + "/5"
+            fluency.text = "Fluency: " + arguments?.getString("FLUENCY") + "/7"
+            memoryRecall.text = "Memory Recall: " + arguments?.getString("MEMORY RECALL") + "/7"
+
 
             val closeButton: Button = view.findViewById(R.id.submitButton)
             closeButton.setOnClickListener {

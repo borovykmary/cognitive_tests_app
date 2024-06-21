@@ -8,7 +8,18 @@ import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
 import androidx.core.content.ContextCompat
+/**
+ * This file contains helper functions for blurring a bitmap.
+ * It includes a function to convert a drawable to a bitmap and a function to blur a bitmap.
+ */
 
+/**
+ * Converts a drawable resource to a bitmap.
+ *
+ * @param drawableId The ID of the drawable resource.
+ * @param context The context.
+ * @return The bitmap.
+ */
 fun drawableToBitmap(drawableId: Int, context: Context): Bitmap {
     val drawable: Drawable? = ContextCompat.getDrawable(context, drawableId)
     val bitmap = Bitmap.createBitmap(drawable!!.intrinsicWidth, drawable.intrinsicHeight, Bitmap.Config.ARGB_8888)
@@ -18,6 +29,15 @@ fun drawableToBitmap(drawableId: Int, context: Context): Bitmap {
     return bitmap
 }
 
+/**
+ * Blurs a bitmap.
+ *
+ * @param bitmap The bitmap to blur.
+ * @param context The context.
+ * @param scaleSize The scale size for the bitmap. Default is 0.1f.
+ * @param blurRadius The radius of the blur. Default is 25f.
+ * @return The blurred bitmap.
+ */
 fun blurBitmap(bitmap: Bitmap, context: Context, scaleSize: Float = 0.1f, blurRadius: Float = 25f): Bitmap {
     // Scale down the image
     val width = (bitmap.width * scaleSize).toInt()

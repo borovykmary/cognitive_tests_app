@@ -12,6 +12,10 @@ import com.example.cognittiveassesmenttests.HomeFragment
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 
+/**
+ * This activity provides information about the Cards test.
+ * It includes a back button to return to the main activity and a button to start the Cards test.
+ */
 class CardInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

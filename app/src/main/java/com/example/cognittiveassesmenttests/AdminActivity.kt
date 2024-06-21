@@ -10,11 +10,21 @@ import android.view.LayoutInflater
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.Spinner
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import android.view.MenuItem
+
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+
 import androidx.fragment.app.DialogFragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,23 +32,46 @@ import com.example.cognittiveassesmenttests.adapters.TestRecordAdapterAdminMA
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordMAAdmin
 import com.example.cognittiveassesmenttests.helpers.ConfirmPopupAdminFragment
 
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.cognittiveassesmenttests.adapters.TestRecordAdapterAdminMA
+import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
+
+
 import com.google.firebase.firestore.FirebaseFirestore
 
-class AdminActivity : AppCompatActivity() {
+class AdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_admin)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout_admin)
+        val toolbar = findViewById<Toolbar>(R.id.toolbar)
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+
 
         val recyclerView = findViewById<RecyclerView>(R.id.testRecordsRecycleViewMA)
         recyclerView.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         val testRecordsAdminMA = mutableListOf<TestRecordMAAdmin>()
 
+        val navigationView = findViewById<NavigationView>(R.id.nav_view)
+        navigationView.setNavigationItemSelectedListener(this)
+        val toggle = ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.open_nav, R.string.close_nav)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, AdminFragment()).commit()
+            navigationView.setCheckedItem(R.id.nav_home)
+        }
+
+
+        // Fetch user data from Firebase
+        val user = FirebaseAuth.getInstance().currentUser
         val db = FirebaseFirestore.getInstance()
         db.collection("Users").get().addOnSuccessListener { users ->
             val testData = mutableListOf<Map<String, Any>>()
@@ -76,7 +109,35 @@ class AdminActivity : AppCompatActivity() {
                     val adapter = TestRecordAdapterAdminMA(testRecordsAdminMA, supportFragmentManager)
                     recyclerView.adapter = adapter
                 }
+
+        db.collection("Users").document(user?.uid!!).get().addOnSuccessListener { document ->
+            val name = document.getString("name")
+
+            // Update userNameText in nav_header
+            val headerView = navigationView.getHeaderView(0)
+            val userNameText = headerView.findViewById<TextView>(R.id.userNameText)
+            userNameText.text = name
+        }
+
+    }
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.nav_home -> supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, AdminFragment()).commit()
+            R.id.nav_logout -> {
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)
+        return true
+    }
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            onBackPressedDispatcher.onBackPressed()
         }
     }
 }

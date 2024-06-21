@@ -1,17 +1,14 @@
 package com.example.cognittiveassesmenttests.SDMTTest
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopupTest
@@ -21,6 +18,13 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * This activity handles the SDMT test.
+ * It includes a countdown timer for the test duration and displays the remaining time.
+ * It also handles the logic for the test, including shuffling the keys and checking the user's answers.
+ * The results of the test are stored in a Firestore database.
+ * It also handles edge-to-edge screen display.
+ */
 class SDMTActivity : AppCompatActivity() {
     // Create a map to store the mapping of image views to drawable resources
     private val imageViewToDrawableMap = mutableMapOf<ImageView, Int>()
@@ -78,14 +82,14 @@ class SDMTActivity : AppCompatActivity() {
         // Create a list of all the image views
         val imageViews = listOf(
             findViewById<ImageView>(R.id.imageViewKey1),
-            findViewById<ImageView>(R.id.imageViewKey2),
-            findViewById<ImageView>(R.id.imageViewKey3),
-            findViewById<ImageView>(R.id.imageViewKey4),
-            findViewById<ImageView>(R.id.imageViewKey5),
-            findViewById<ImageView>(R.id.imageViewKey6),
-            findViewById<ImageView>(R.id.imageViewKey7),
-            findViewById<ImageView>(R.id.imageViewKey8),
-            findViewById<ImageView>(R.id.imageViewKey9)
+            findViewById(R.id.imageViewKey2),
+            findViewById(R.id.imageViewKey3),
+            findViewById(R.id.imageViewKey4),
+            findViewById(R.id.imageViewKey5),
+            findViewById(R.id.imageViewKey6),
+            findViewById(R.id.imageViewKey7),
+            findViewById(R.id.imageViewKey8),
+            findViewById(R.id.imageViewKey9)
         )
 
         // Create a list of all the drawable resources
@@ -125,14 +129,14 @@ class SDMTActivity : AppCompatActivity() {
         // Set click listeners for the textViewKey views
         val textViewKeys = listOf(
             findViewById<TextView>(R.id.textViewKey1),
-            findViewById<TextView>(R.id.textViewKey2),
-            findViewById<TextView>(R.id.textViewKey3),
-            findViewById<TextView>(R.id.textViewKey4),
-            findViewById<TextView>(R.id.textViewKey5),
-            findViewById<TextView>(R.id.textViewKey6),
-            findViewById<TextView>(R.id.textViewKey7),
-            findViewById<TextView>(R.id.textViewKey8),
-            findViewById<TextView>(R.id.textViewKey9)
+            findViewById(R.id.textViewKey2),
+            findViewById(R.id.textViewKey3),
+            findViewById(R.id.textViewKey4),
+            findViewById(R.id.textViewKey5),
+            findViewById(R.id.textViewKey6),
+            findViewById(R.id.textViewKey7),
+            findViewById(R.id.textViewKey8),
+            findViewById(R.id.textViewKey9)
         )
 
         for (i in textViewKeys.indices) {

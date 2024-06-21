@@ -3,6 +3,7 @@ package com.example.cognittiveassesmenttests
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -10,7 +11,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
-
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+/**
+ * This is the main activity of the application.
+ * It sets up the navigation drawer and handles navigation item selections.
+ * It also fetches user data from Firebase and updates the UI accordingly.
+ */
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,6 +37,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, HomeFragment()).commit()
             navigationView.setCheckedItem(R.id.nav_home)
+        }
+
+        // Fetch user data from Firebase
+        val user = FirebaseAuth.getInstance().currentUser
+        val db = FirebaseFirestore.getInstance()
+        db.collection("Users").document(user?.uid!!).get().addOnSuccessListener { document ->
+            val name = document.getString("name")
+
+            // Update userNameText in nav_header
+            val headerView = navigationView.getHeaderView(0)
+            val userNameText = headerView.findViewById<TextView>(R.id.userNameText)
+            userNameText.text = name
+
         }
     }
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

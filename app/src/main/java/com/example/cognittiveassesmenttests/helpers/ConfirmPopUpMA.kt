@@ -15,11 +15,11 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 
-fun showConfirmPopupMA(buttonId: Int, activity: AppCompatActivity, rootLayoutId: Int, dataMap: HashMap<String, String>) {
-    activity.findViewById<ImageView>(buttonId).setOnClickListener {
+fun showConfirmPopupMA(activity: AppCompatActivity, rootLayoutId: Int) {
+
         // Inflate the confirm_popup layout
         val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val popupView = inflater.inflate(R.layout.confirm_popup, null)
+        val popupView = inflater.inflate(R.layout.confirm_popup_ma_test, null)
 
         // Create the popup window
         val width = LinearLayout.LayoutParams.WRAP_CONTENT
@@ -41,7 +41,7 @@ fun showConfirmPopupMA(buttonId: Int, activity: AppCompatActivity, rootLayoutId:
         }
 
         // Set up the confirm button
-        popupView.findViewById<Button>(R.id.confirmButton).setOnClickListener {
+        popupView.findViewById<Button>(R.id.submitTestButton).setOnClickListener {
             // Create an intent to start MainActivity
             val intent = Intent(activity, MainActivity::class.java)
             // Start MainActivity
@@ -51,4 +51,3 @@ fun showConfirmPopupMA(buttonId: Int, activity: AppCompatActivity, rootLayoutId:
         // Show the popup window
         popupWindow.showAtLocation(activity.findViewById(rootLayoutId), Gravity.CENTER, 0, 0)
     }
-}

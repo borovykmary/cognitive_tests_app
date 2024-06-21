@@ -14,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.helpers.showConfirmPopup
+import com.example.cognittiveassesmenttests.helpers.showConfirmPopupTest
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -25,6 +26,7 @@ class SDMTActivity : AppCompatActivity() {
     private val imageViewToDrawableMap = mutableMapOf<ImageView, Int>()
     private var currentKey = 0
     private var correctAnswers = 0 // Counter for correct answers
+    private var totalAnswers = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,14 +49,15 @@ class SDMTActivity : AppCompatActivity() {
             override fun onFinish() {
                 textViewTime.text = "00:00"
                 // Show the number of correct answers in a Toast message
-                Toast.makeText(this@SDMTActivity, "Correct answers: $correctAnswers", Toast.LENGTH_LONG).show()
 
+                val correctPercentage = if (totalAnswers > 0) (correctAnswers.toDouble() / totalAnswers) * 100 else 0.0
+                val roundedPercentage = String.format("%.1f", correctPercentage)
                 // Create a dataMap to store the number of correct answers
                 val dataMap = hashMapOf<String, Any>()
                 val sdf = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
                 val currentDate = sdf.format(Date())
                 dataMap["Date"] = currentDate
-                dataMap["CorrectAnswers"] = correctAnswers.toString()
+                dataMap["CorrectPercentage"] = roundedPercentage.toString()
 
                 // Send dataMap to the subcollection TestSDMT in a collection with a name that equals the Firebase user id
                 val userId = FirebaseAuth.getInstance().currentUser?.uid
@@ -64,11 +67,8 @@ class SDMTActivity : AppCompatActivity() {
                         .addOnSuccessListener { Log.d("Firestore", "DocumentSnapshot successfully written!") }
                         .addOnFailureListener { e -> Log.w("Firestore", "Error writing document", e) }
                 }
+                showConfirmPopupTest(this@SDMTActivity, R.id.SDMTTestActivity)
 
-                // Start MainActivity
-                val intent = Intent(this@SDMTActivity, MainActivity::class.java)
-                startActivity(intent)
-                finish()
             }
         }
 
@@ -137,12 +137,10 @@ class SDMTActivity : AppCompatActivity() {
 
         for (i in textViewKeys.indices) {
             textViewKeys[i].setOnClickListener {
+                totalAnswers++
                 // Check if the clicked key matches the current key in imageViewKeyQuestion
                 if (imageViewToDrawableMap[imageViews[i]] == currentKey) {
                     correctAnswers++
-                    Toast.makeText(this, "Right answer", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Wrong answer", Toast.LENGTH_SHORT).show()
                 }
 
                 // Trigger a click on imageViewNumbersAnswer to shuffle everything

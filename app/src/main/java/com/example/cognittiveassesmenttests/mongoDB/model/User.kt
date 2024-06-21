@@ -6,4 +6,5 @@ class User {
     var name: String = ""
     var age: Int = 18
     var gender: String? = null
+    val role: String = "ROLE_READER"
 }

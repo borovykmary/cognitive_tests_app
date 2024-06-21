@@ -14,7 +14,18 @@ import android.widget.PopupWindow
 import androidx.appcompat.app.AppCompatActivity
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
+/**
+ * This file contains a function to show a confirmation popup.
+ * The popup includes a confirm button that starts MainActivity when clicked.
+ */
 
+/**
+ * Shows a confirmation popup.
+ *
+ * @param buttonId The ID of the button that triggers the popup.
+ * @param activity The activity where the popup is shown.
+ * @param rootLayoutId The ID of the root layout.
+ */
 fun showConfirmPopup(buttonId: Int, activity: AppCompatActivity, rootLayoutId: Int) {
     activity.findViewById<ImageView>(buttonId).setOnClickListener {
         // Inflate the confirm_popup layout
@@ -25,6 +36,10 @@ fun showConfirmPopup(buttonId: Int, activity: AppCompatActivity, rootLayoutId: I
         val width = LinearLayout.LayoutParams.WRAP_CONTENT
         val height = LinearLayout.LayoutParams.WRAP_CONTENT
         val popupWindow = PopupWindow(popupView, width, height, true)
+
+        // Prevent the popup from being dismissed by a touch event outside of it
+        popupWindow.isOutsideTouchable = false
+        popupWindow.isFocusable = false
 
         // Create a semi-transparent overlay
         val overlay = View(activity)

@@ -8,16 +8,44 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cognittiveassesmenttests.AdminMAPopupFragment
 import com.example.cognittiveassesmenttests.MADetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
+import com.example.cognittiveassesmenttests.dataClasses.TestRecordMA
+import com.example.cognittiveassesmenttests.dataClasses.TestRecordMAAdmin
 import com.example.cognittiveassesmenttests.helpers.ConfirmPopupAdminFragment
 
-class TestRecordAdapterAdminMA(
+class TestRecordAdapterAdminMA(private val testRecords: List<TestRecordMAAdmin>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterAdminMA.TestRecordAdminViewHolder>() {
+
+    class TestRecordAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val testDate: TextView = view.findViewById(R.id.time)
+        val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TestRecordAdminViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.test_record_item_ma, parent, false)
+        return TestRecordAdminViewHolder(view)
+    }
+
+    override fun onBindViewHolder(holder: TestRecordAdminViewHolder, position: Int) {
+        Log.d("RecordsFragment", "Test records: $testRecords")
+        val testRecord = testRecords[position]
+        holder.testDate.text = testRecord.testDate
+
+        holder.testDetails.setOnClickListener {
+            val dialog = AdminMAPopupFragment.newInstance(testRecord)
+            dialog.show(fragmentManager, "DetailsDialogFragment")
+        }
+    }
+
+    override fun getItemCount() = testRecords.size
+}
+
+/* class TestRecordAdapterAdminMA(
     private val dataList: List<Map<String, Any>>,
     private val fragmentManager: FragmentManager,
     private val onConfirm: (data: Map<String, Any>) -> Unit
@@ -48,7 +76,7 @@ class TestRecordAdapterAdminMA(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_admin_ma, parent, false)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.popup_admin_ma, parent, false)
         return ViewHolder(view)
     }
 
@@ -140,3 +168,5 @@ class TestRecordAdapterAdminMA(
 
     override fun getItemCount() = dataList.size
 }
+
+ */

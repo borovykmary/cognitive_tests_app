@@ -294,3 +294,4 @@ class MADetailsDialogFragment : DialogFragment() {
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 }
+

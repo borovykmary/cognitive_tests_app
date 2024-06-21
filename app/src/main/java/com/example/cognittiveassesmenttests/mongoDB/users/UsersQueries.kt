@@ -8,7 +8,7 @@ class UsersQueries(private val dbConnection: DBConnection) : UsersDAO {
 
     private val firestoreInstance: FirebaseFirestore = dbConnection.getFirestoreInstance()
 
-    override suspend fun insertUser(user: User) {
+    override fun insertUser(user: User) {
         val userId = user.firebase_user_id
         if (userId != null) {
             firestoreInstance.collection("Users").document(userId).set(user)

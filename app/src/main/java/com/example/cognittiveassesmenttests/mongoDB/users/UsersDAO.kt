@@ -5,5 +5,6 @@ import com.example.cognittiveassesmenttests.mongoDB.model.User
 
 
 interface UsersDAO {
-    suspend fun insertUser(user: User)
+     fun insertUser(user: User)
+
 }

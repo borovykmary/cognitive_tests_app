@@ -14,7 +14,7 @@ import com.example.cognittiveassesmenttests.dataClasses.TestRecordCARD
 class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testDate: TextView = view.findViewById(R.id.time)
+        val testDate: TextView = view.findViewById(R.id.simpleText)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
 

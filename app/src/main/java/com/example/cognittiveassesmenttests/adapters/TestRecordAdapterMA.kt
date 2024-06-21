@@ -9,13 +9,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.MADetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
-import com.example.cognittiveassesmenttests.SDMTDetailsDialogFragment
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordMA
 
 class TestRecordAdapterMA(private val testRecords: List<TestRecordMA>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterMA.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testDate: TextView = view.findViewById(R.id.time)
+        val testDate: TextView = view.findViewById(R.id.simpleText)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
 

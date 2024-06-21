@@ -149,7 +149,7 @@ class AdminMAPopupFragment: DialogFragment(){
             name2.text = "Name 2: " + arguments?.getString("Name1")
             name1Repeat.text = "Name 1: " + arguments?.getString("Name1Repeat")
             name2Repeat.text = "Name 2: " + arguments?.getString("NameRepeat")
-            time.text = "Time: " + arguments?.getString("Time")
+            time.text = "Total Time: " + arguments?.getString("Time")
             year.text = "Year: " + arguments?.getString("Year")
 
             // Create an ArrayAdapter using the integer array and a default spinner layout

@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.cognittiveassesmenttests.CardsDetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.SDMTDetailsDialogFragment
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordSDMT
@@ -15,7 +14,7 @@ import com.example.cognittiveassesmenttests.dataClasses.TestRecordSDMT
 class TestRecordAdapterSDMT(private val testRecords: List<TestRecordSDMT>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterSDMT.TestRecordViewHolder>() {
 
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testDate: TextView = view.findViewById(R.id.time)
+        val testDate: TextView = view.findViewById(R.id.simpleText)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
 

@@ -65,12 +65,12 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/time"
+            android:id="@+id/simpleText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/time_icon"
-            android:fontFamily="@font/poppins_regular"
             android:text=" 15.04.2024"
+            android:fontFamily="@font/poppins_regular"
             android:textColor="@color/green_900"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/bg3"

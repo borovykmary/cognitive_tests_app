@@ -15,6 +15,7 @@
         android:src="@drawable/avatar"
         />
     <TextView
+        android:id="@+id/userNameText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Full Name"

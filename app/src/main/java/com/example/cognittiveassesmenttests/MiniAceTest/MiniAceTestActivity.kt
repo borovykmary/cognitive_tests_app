@@ -1,23 +1,19 @@
 package com.example.cognittiveassesmenttests.MiniAceTest
 
-import android.content.Intent
 import android.graphics.Bitmap
-import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.viewpager2.widget.ViewPager2
-import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.MiniAceTest1
 import com.example.cognittiveassesmenttests.MiniAceTest2
 import com.example.cognittiveassesmenttests.MiniAceTest3
@@ -36,7 +32,13 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-
+/**
+ * This activity handles the MiniAce test.
+ * It includes a countdown timer for the test duration and displays the remaining time.
+ * It also handles the logic for the test, including navigating through the test pages and submitting the test.
+ * The results of the test are stored in a Firestore database.
+ * It also handles edge-to-edge screen display.
+ */
 class MiniAceTestActivity : AppCompatActivity() {
 
     private lateinit var viewPager: ViewPager2
@@ -53,6 +55,42 @@ class MiniAceTestActivity : AppCompatActivity() {
         viewPager.isUserInputEnabled = false
 
         imageViewCounter = findViewById(R.id.imageViewCounter)
+
+        val textViewTimeAce4 = findViewById<TextView>(R.id.textViewTimeAce4)
+        val imageViewCounterAce4 = findViewById<ImageView>(R.id.imageViewCounterAce4)
+
+        // Initialize the countdown timer
+        val countdownTimer = object: CountDownTimer(60000, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val seconds = millisUntilFinished / 1000 % 60
+                val minutes = millisUntilFinished / (1000 * 60) % 60
+                textViewTimeAce4.text = String.format("%02d:%02d", minutes, seconds)
+            }
+
+            override fun onFinish() {
+                textViewTimeAce4.text = "00:00"
+                // Move to the next page when the timer finishes
+                val currentItem = viewPager.currentItem
+                if (currentItem < 4) {
+                    viewPager.setCurrentItem(currentItem + 1)
+                    updateCounterImage(currentItem + 1)
+                }
+            }
+        }
+
+        viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+            override fun onPageSelected(position: Int) {
+                if (position == 2) { // Assuming MiniAceTest3 is at position 2
+                    imageViewCounterAce4.visibility = View.VISIBLE
+                    textViewTimeAce4.visibility = View.VISIBLE
+                    countdownTimer.start()
+                } else {
+                    imageViewCounterAce4.visibility = View.GONE
+                    textViewTimeAce4.visibility = View.GONE
+                    countdownTimer.cancel()
+                }
+            }
+        })
 
         val nextButton: ImageView = findViewById(R.id.next_button_image)
         val buttonTestSubmit: Button = findViewById(R.id.buttonTestSubmit)

@@ -38,8 +38,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-//import androidx.activity.compose.setContent
-
+/**
+ * This activity handles the Cards test.
+ * It includes a countdown timer for the test duration and displays the remaining time.
+ * It also handles the logic for the test, including shuffling the cards, checking the user's answers, and updating the score.
+ * The results of the test are stored in a Firestore database.
+ */
 class CardsActivity : AppCompatActivity() {
     private var dragCounter = 128 // 4 times more than needed, actually it is 64 times
     private var correctAnswersInRow = 0

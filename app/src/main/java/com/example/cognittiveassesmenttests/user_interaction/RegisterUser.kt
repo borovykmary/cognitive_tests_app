@@ -59,9 +59,8 @@ class RegisterUser(private val context: Context) {
                                     this.gender = gender
                                 }
 
-                                GlobalScope.launch(Dispatchers.IO) {
                                     usersQueries.insertUser(newUser)
-                                }
+
 
 
 

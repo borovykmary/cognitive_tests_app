@@ -22,6 +22,8 @@ import com.example.cognittiveassesmenttests.dataClasses.TestRecordMAAdmin
 import com.example.cognittiveassesmenttests.helpers.ConfirmPopupAdminFragment
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 /**
  * This fragment is accessible only to admin users.
@@ -95,7 +97,13 @@ class AdminFragment : Fragment() {
                             val name1Repeat = test.getString("Name1Repeat")
                             val nameRepeat = test.getString("NameRepeat")
                             val year = test.getString("Year")
-                            val testDate = test.getString("DateTime")
+
+                            val inputFormat = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
+                            val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+
+                            val inputDateStr = test.getString("DateTime")
+                            val date = inputFormat.parse(inputDateStr)
+                            val testDate = outputFormat.format(date)
                             val testTime = test.getString("Time")
                             val drawingUrl = test.getString("DrawingImageURL")
                             val testRecord = TestRecordMAAdmin(
@@ -113,7 +121,7 @@ class AdminFragment : Fragment() {
                                 name1Repeat!!,
                                 nameRepeat!!,
                                 year!!,
-                                testDate!!,
+                                testDate,
                                 testTime!!,
                                 drawingUrl!!
                             )

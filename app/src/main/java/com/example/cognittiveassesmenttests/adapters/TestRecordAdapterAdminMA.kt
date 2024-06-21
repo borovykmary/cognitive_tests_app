@@ -1,28 +1,20 @@
 package com.example.cognittiveassesmenttests.adapters
 
-import android.content.Intent
-import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.AdminMAPopupFragment
-import com.example.cognittiveassesmenttests.MADetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
-import com.example.cognittiveassesmenttests.dataClasses.TestRecordMA
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordMAAdmin
-import com.example.cognittiveassesmenttests.helpers.ConfirmPopupAdminFragment
 
 class TestRecordAdapterAdminMA(private val testRecords: List<TestRecordMAAdmin>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterAdminMA.TestRecordAdminViewHolder>() {
 
     class TestRecordAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testDate: TextView = view.findViewById(R.id.time)
+        val testDate: TextView = view.findViewById(R.id.simpleText)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
 

@@ -26,7 +26,7 @@ class TestRecordAdapterAdminMA(private val testRecords: List<TestRecordMAAdmin>,
      * @property testDetails The TextView for the test details button.
      */
     class TestRecordAdminViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testDate: TextView = view.findViewById(R.id.time)
+        val testDate: TextView = view.findViewById(R.id.simpleText)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
 

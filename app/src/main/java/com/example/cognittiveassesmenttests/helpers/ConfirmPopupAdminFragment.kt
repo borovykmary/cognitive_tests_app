@@ -7,6 +7,8 @@ import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
+import com.example.cognittiveassesmenttests.AdminFragment
 import com.example.cognittiveassesmenttests.R
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.firestore.FirebaseFirestore
@@ -27,7 +29,9 @@ class ConfirmPopupAdminFragment(
     private val spinner4: Spinner,
     private val spinner5: Spinner
 ) : DialogFragment() {
+    private val sharedViewModel: SharedViewModel by activityViewModels()
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+
         return activity?.let {
             val builder = AlertDialog.Builder(it)
             val inflater: LayoutInflater = requireActivity().layoutInflater;
@@ -55,6 +59,7 @@ class ConfirmPopupAdminFragment(
 
                 db.collection("Users").document(userId).collection("TestMA").document(id).update(record)
 
+                sharedViewModel.refreshPage()
 
                 dismiss()
             }

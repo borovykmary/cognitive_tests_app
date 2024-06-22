@@ -45,7 +45,7 @@ import java.util.Locale
  * The results of the test are stored in a Firestore database.
  */
 class CardsActivity : AppCompatActivity() {
-    private var dragCounter = 128 // 4 times more than needed, actually it is 64 times
+    private var dragCounter = 256 // 4 times more than needed, actually it is 64 times
     private var correctAnswersInRow = 0
     private var currentCondition = "color"
     private var correctAnswers = 0

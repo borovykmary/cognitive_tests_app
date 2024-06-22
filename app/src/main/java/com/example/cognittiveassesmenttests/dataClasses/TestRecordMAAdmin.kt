@@ -13,6 +13,7 @@ data class TestRecordMAAdmin(
     val addressRepeat: String,
     val animals: String,
     val day: String,
+    val date: String,
     val month: String,
     val name: String,
     val name1: String,

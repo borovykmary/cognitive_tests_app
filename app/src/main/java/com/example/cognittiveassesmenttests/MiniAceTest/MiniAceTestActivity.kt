@@ -56,6 +56,7 @@ class MiniAceTestActivity : AppCompatActivity() {
 
         imageViewCounter = findViewById(R.id.imageViewCounter)
 
+
         val textViewTimeAce4 = findViewById<TextView>(R.id.textViewTimeAce4)
         val imageViewCounterAce4 = findViewById<ImageView>(R.id.imageViewCounterAce4)
 
@@ -69,6 +70,8 @@ class MiniAceTestActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 textViewTimeAce4.text = "00:00"
+                val editTextAnimals = viewPager.findViewById<EditText>(R.id.editTextAnimals)
+                dataMap["Animals"] = editTextAnimals.text.toString()
                 // Move to the next page when the timer finishes
                 val currentItem = viewPager.currentItem
                 if (currentItem < 4) {

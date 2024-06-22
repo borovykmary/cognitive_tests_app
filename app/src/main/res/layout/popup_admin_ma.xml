@@ -110,8 +110,8 @@ android:layout_height="wrap_content"
 
         <TextView
             android:id="@+id/animals_answer"
-            android:layout_width="180dp"
-            android:layout_height="62dp"
+            android:layout_width="343dp"
+            android:layout_height="64dp"
             android:layout_marginTop="56dp"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/green_haki"
@@ -151,11 +151,12 @@ android:layout_height="wrap_content"
             android:id="@+id/name1recall_answer"
             android:layout_width="180dp"
             android:layout_height="25dp"
-            android:layout_marginTop="152dp"
+            android:layout_marginTop="156dp"
             android:fontFamily="@font/poppins_regular"
             android:textColor="@color/green_haki"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="@+id/animals_answer"
+            app:layout_constraintHorizontal_bias="0.024"
             app:layout_constraintStart_toStartOf="@+id/animals_answer"
             app:layout_constraintTop_toBottomOf="@+id/animals_answer" />
 
@@ -238,15 +239,15 @@ android:layout_height="wrap_content"
             android:id="@+id/simpleText"
             android:layout_width="175dp"
             android:layout_height="46dp"
-            android:layout_marginTop="60dp"
             android:fontFamily="@font/poppins_semibold"
             android:text="Clock Drawing RESULTS"
             android:textColor="@color/green_haki"
             android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView37"
             app:layout_constraintEnd_toEndOf="@+id/animals_answer"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/animals_answer"
-            app:layout_constraintTop_toBottomOf="@+id/animals_answer" />
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
 
         <TextView
             android:id="@+id/address1recall_answer"
@@ -358,12 +359,11 @@ android:layout_height="wrap_content"
             android:textAllCaps="false"
             android:textColor="@color/gray"
             android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+            app:layout_constraintBottom_toTopOf="@+id/imageView23"
             app:layout_constraintEnd_toEndOf="@+id/imageView18"
             app:layout_constraintHorizontal_bias="0.787"
             app:layout_constraintStart_toStartOf="@+id/imageView18"
-            app:layout_constraintTop_toBottomOf="@+id/input4"
-            app:layout_constraintVertical_bias="0.07" />
+            app:layout_constraintTop_toBottomOf="@+id/input4" />
 
         <TextView
             android:id="@+id/textView29"

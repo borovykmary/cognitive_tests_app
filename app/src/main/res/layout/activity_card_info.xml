@@ -179,18 +179,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="314dp"
-        android:layout_height="118dp"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="15dp"
-        android:text="During the test you will see a list of 4 cards and 1 random card. You should drag and drop this card to the most fitting card from the list(the characteristics are up to you). In total you have 64 cards to match. But be carefull, match rules may update. Number of correct answers are displayed in the top counter"
-        android:fontFamily="@font/inter_regular"
-        android:textColor="@color/text_gray"
-        android:textSize="14dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="311dp"
+            android:layout_height="129dp"
+            android:layout_marginStart="46dp"
+            android:layout_marginTop="15dp"
+            android:fontFamily="@font/inter_regular"
+            android:text="During the test you will see a list of 4 cards and 1 random card. You should drag and drop this card to the most fitting card from the list(the characteristics are up to you). In total you have 64 cards to match. But be carefull, match rules may update. Number of correct answers are displayed in the top counter"
+            android:textColor="@color/text_gray"
+            android:textSize="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
     <TextView
         android:id="@+id/textView10"

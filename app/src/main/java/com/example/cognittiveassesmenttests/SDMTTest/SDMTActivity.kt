@@ -62,6 +62,8 @@ class SDMTActivity : AppCompatActivity() {
                 val currentDate = sdf.format(Date())
                 dataMap["Date"] = currentDate
                 dataMap["CorrectPercentage"] = roundedPercentage.toString()
+                dataMap["CorrectAnswers"] = correctAnswers.toString()
+                dataMap["AllAnswers"] = totalAnswers.toString()
 
                 // Send dataMap to the subcollection TestSDMT in a collection with a name that equals the Firebase user id
                 val userId = FirebaseAuth.getInstance().currentUser?.uid

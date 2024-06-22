@@ -187,7 +187,7 @@
         android:layout_height="118dp"
         android:layout_marginStart="46dp"
         android:layout_marginTop="15dp"
-        android:text="During the test you will need to answer given questions. Test consists of 5 blocks that test different cognitive abilities as Attention, Memory, Fluency, Clock drawing and Memory Recall. Follow instructions carefully for best results. Test reuslts are verified my certified doctor."
+        android:text="During the test you will need to answer given questions. Test consists of 5 blocks that test different cognitive abilities as Attention, Memory, Fluency, Visuospatial and Memory Recall. Follow instructions carefully for best results. Test results are verified by certified doctor."
         android:fontFamily="@font/inter_regular"
         android:textColor="@color/text_gray"
         android:textSize="14dp"

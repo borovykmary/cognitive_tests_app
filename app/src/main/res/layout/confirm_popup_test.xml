@@ -43,7 +43,8 @@
         android:textColor="@color/green_haki"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/submitTestButton"
-        tools:layout_editor_absoluteX="80dp" />
+        app:layout_constraintEnd_toEndOf="@+id/imageView16"
+        app:layout_constraintStart_toStartOf="@+id/imageView16" />
 
     <TextView
         android:id="@+id/textView32"

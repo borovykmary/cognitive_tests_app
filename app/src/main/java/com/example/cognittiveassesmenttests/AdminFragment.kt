@@ -15,11 +15,14 @@ import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cognittiveassesmenttests.adapters.TestRecordAdapterAdminMA
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordMAAdmin
 import com.example.cognittiveassesmenttests.helpers.ConfirmPopupAdminFragment
+import com.example.cognittiveassesmenttests.helpers.SharedViewModel
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.text.SimpleDateFormat
@@ -37,6 +40,22 @@ class AdminFragment : Fragment() {
      */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Initialize your SharedViewModel
+        val sharedViewModel: SharedViewModel by activityViewModels()
+
+        sharedViewModel.refresh.observe(viewLifecycleOwner) { refresh ->
+            if (refresh) {
+                // Refresh the fragment
+                val fragmentManager = parentFragmentManager
+                fragmentManager.beginTransaction()
+                    .replace(R.id.fragment_container, AdminFragment())
+                    .commit()
+
+                // Reset the refresh signal
+                sharedViewModel.resetRefresh()
+            }
+        }
         val recyclerView = view.findViewById<RecyclerView>(R.id.testRecordsRecycleViewMA)
         recyclerView.layoutManager =
             LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
@@ -63,8 +82,10 @@ class AdminFragment : Fragment() {
                     }
             }
         }
+        /*val navigationView = view.findViewById<NavigationView>(R.id.nav_view)
+        val userForName = FirebaseAuth.getInstance().currentUser
 
-        /*db.collection("Users").document(user?.uid!!).get().addOnSuccessListener { document ->
+        db.collection("Users").document(userForName?.uid!!).get().addOnSuccessListener { document ->
             val name = document.getString("name")
 
             // Update userNameText in nav_header
@@ -95,6 +116,7 @@ class AdminFragment : Fragment() {
                             val addressRepeat = test.getString("AddressRepeat")
                             val animals = test.getString("Animals")
                             val day = test.getString("Day")
+                            val date = test.getString("Date")
                             val month = test.getString("Month")
                             val name = test.getString("Name")
                             val name1 = test.getString("Name1")
@@ -106,8 +128,8 @@ class AdminFragment : Fragment() {
                             val outputFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
 
                             val inputDateStr = test.getString("DateTime")
-                            val date = inputFormat.parse(inputDateStr)
-                            val testDate = outputFormat.format(date)
+                            val dateTime = inputFormat.parse(inputDateStr)
+                            val testDate = outputFormat.format(dateTime)
                             val testTime = test.getString("Time")
                             val drawingUrl = test.getString("DrawingImageURL")
                             val testRecord = TestRecordMAAdmin(
@@ -119,6 +141,7 @@ class AdminFragment : Fragment() {
                                 addressRepeat!!,
                                 animals!!,
                                 day!!,
+                                date!!,
                                 month!!,
                                 name!!,
                                 name1!!,
@@ -171,6 +194,7 @@ class AdminMAPopupFragment: DialogFragment(){
             args.putString("AddressRepeat", testRecord.addressRepeat)
             args.putString("Animals", testRecord.animals)
             args.putString("Day", testRecord.day)
+            args.putString("Date", testRecord.date)
             args.putString("Month", testRecord.month)
             args.putString("Name", testRecord.name)
             args.putString("Name1", testRecord.name1)

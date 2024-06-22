@@ -92,7 +92,9 @@ class RecordsFragment : Fragment() {
                         val testDate = outputFormat.format(date)
 
                         val testScore = document.getString("CorrectPercentage")
-                        val testRecord = TestRecordSDMT(testDate!!, testScore!!)
+                        val testAll = document.getString("AllAnswers")
+                        val testCorrect = document.getString("CorrectAnswers")
+                        val testRecord = TestRecordSDMT(testDate!!, testScore!!, testAll!!, testCorrect!!)
                         testRecordsSDMT.add(testRecord)
                     }
                     val adapterSDMT = TestRecordAdapterSDMT(testRecordsSDMT, childFragmentManager)
@@ -177,7 +179,9 @@ class SDMTDetailsDialogFragment : DialogFragment() {
             val fragment = SDMTDetailsDialogFragment()
             val args = Bundle()
             args.putString("Date", testRecord.testDate)
-            args.putString("CorrectAnswers", testRecord.testScore)
+            args.putString("CorrectPercentage", testRecord.testScore)
+            args.putString("CorrectAnswers", testRecord.testCorrect)
+            args.putString("AllAnswers", testRecord.testAll)
             fragment.arguments = args
             return fragment
         }
@@ -193,10 +197,14 @@ class SDMTDetailsDialogFragment : DialogFragment() {
             val view = inflater.inflate(R.layout.see_details_popup_sdmt, null)
 
             val scoreSDMT: TextView = view.findViewById(R.id.totalSDMC)
+            val scoreAllSDMT: TextView = view.findViewById(R.id.totalSDMCAll)
+            val scoreCorrectSDMT: TextView = view.findViewById(R.id.totalSDMCCorrect)
             val date: TextView = view.findViewById(R.id.dateSDMC)
 
             date.text = "Date: " + arguments?.getString("Date")
-            scoreSDMT.text = "Total: " + arguments?.getString("CorrectAnswers") + "/64"
+            scoreSDMT.text = "Total: " + arguments?.getString("CorrectPercentage") + "/100%"
+            scoreAllSDMT.text = "Correct Answers: " + arguments?.getString("CorrectAnswers")
+            scoreCorrectSDMT.text = "Total Answers: " + arguments?.getString("AllAnswers")
 
             val closeButton: Button = view.findViewById(R.id.submitButton)
             closeButton.setOnClickListener {
@@ -292,6 +300,7 @@ class MADetailsDialogFragment : DialogFragment() {
             val visuospatial: TextView = view.findViewById(R.id.visuospatialScore)
             val fluency: TextView = view.findViewById(R.id.fluencyScore)
             val memoryRecall: TextView = view.findViewById(R.id.memoryRecallScore)
+            val total: TextView = view.findViewById(R.id.totalMA)
 
             date.text = "Date: " + arguments?.getString("DateTime")
             time.text = "Time: " + arguments?.getString("Time")
@@ -300,6 +309,14 @@ class MADetailsDialogFragment : DialogFragment() {
             visuospatial.text = "Visuospatial: " + arguments?.getString("CLOCK DRAWING") + "/5"
             fluency.text = "Fluency: " + arguments?.getString("FLUENCY") + "/7"
             memoryRecall.text = "Memory Recall: " + arguments?.getString("MEMORY RECALL") + "/7"
+            total.text = "Total: " + (arguments?.getString("ATTENTION")?.toInt()?.plus(
+                arguments?.getString("MEMORY")?.toInt() ?: 0
+            )?.plus(
+                arguments?.getString("CLOCK DRAWING")?.toInt() ?: 0
+            )?.plus(
+                arguments?.getString("FLUENCY")?.toInt() ?: 0
+            )?.plus(
+                arguments?.getString("MEMORY RECALL")?.toInt() ?: 0)).toString() + "/30"
 
 
             val closeButton: Button = view.findViewById(R.id.submitButton)

@@ -29,6 +29,10 @@ import com.google.firebase.firestore.FirebaseFirestore
  */
 class AdminFragment : Fragment() {
 
+    /**
+     * Called immediately after onCreateView(LayoutInflater, ViewGroup, Bundle) has returned,
+     * but before any saved state has been restored in to the view.
+     */
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val recyclerView = view.findViewById<RecyclerView>(R.id.testRecordsRecycleViewMA)
@@ -129,6 +133,9 @@ class AdminFragment : Fragment() {
         }
     }
 
+    /**
+     * Called to have the fragment instantiate its user interface view.
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -139,6 +146,10 @@ class AdminFragment : Fragment() {
 
 
 }
+
+/**
+ * This class represents a dialog fragment for the admin MA popup.
+ */
 class AdminMAPopupFragment: DialogFragment(){
     companion object {
         fun newInstance(testRecord: TestRecordMAAdmin): AdminMAPopupFragment {
@@ -165,6 +176,10 @@ class AdminMAPopupFragment: DialogFragment(){
             return fragment
         }
     }
+
+    /**
+     * Called to do initial creation of a fragment.
+     */
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity?.let {
             val builder = AlertDialog.Builder(it)

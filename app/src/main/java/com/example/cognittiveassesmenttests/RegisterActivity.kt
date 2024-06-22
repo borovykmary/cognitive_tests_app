@@ -15,9 +15,16 @@ import com.example.cognittiveassesmenttests.helpers.blurBitmap
 import com.example.cognittiveassesmenttests.helpers.drawableToBitmap
 import com.example.cognittiveassesmenttests.user_interaction.RegisterUser
 
+/**
+ * This activity allows a user to register a new account.
+ */
 class RegisterActivity : AppCompatActivity() {
     private lateinit var registerUser: RegisterUser
 
+    /**
+     * Called when the activity is starting.
+     * This is where most initialization should go.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -12,8 +12,17 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 
+/**
+ * This activity is accessible only to admin users.
+ * It sets up the navigation drawer and handles navigation item selections.
+ */
 class AdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var drawerLayout: DrawerLayout
+
+    /**
+     * Called when the activity is starting.
+     * This is where most initialization should go.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -43,7 +52,12 @@ class AdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
     }
 
 
-
+    /**
+     * Called when a navigation item is selected.
+     *
+     * @param item The selected item
+     * @return true to display the item as the selected item
+     */
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_home -> supportFragmentManager.beginTransaction()
@@ -56,6 +70,10 @@ class AdminActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelect
         drawerLayout.closeDrawer(GravityCompat.START)
         return true
     }
+
+    /**
+     * Called when the activity has detected the user's press of the back key.
+     */
     override fun onBackPressed() {
         super.onBackPressed()
         if (drawerLayout.isDrawerOpen(GravityCompat.START)) {

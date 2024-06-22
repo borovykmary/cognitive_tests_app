@@ -8,10 +8,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.cognittiveassesmenttests.HomeFragment
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 
+/**
+ * This activity provides information about the SDMT test.
+ * It includes a back button to return to the main activity and a button to start the SDMT test.
+ * It also handles edge-to-edge screen display.
+ */
 class SDMTInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +29,13 @@ class SDMTInfoActivity : AppCompatActivity() {
         val SDMTInfoBackButton = findViewById<ImageView>(R.id.SDMTBackButton)
         SDMTInfoBackButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        val SDMTInfoTestButton = findViewById<Button>(R.id.buttonSDMTActivity)
+        SDMTInfoTestButton.setOnClickListener {
+
+            val intent = Intent(this, SDMTActivity::class.java)
             startActivity(intent)
         }
     }

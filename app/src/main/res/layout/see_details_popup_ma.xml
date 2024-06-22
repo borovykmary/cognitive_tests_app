@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <ImageView
+        android:id="@+id/imageView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.405"
+        app:srcCompat="@drawable/see_details_popup" />
+
+    <Button
+        android:id="@+id/submitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="42dp"
+        android:background="@drawable/button_with_stroke"
+        android:fontFamily="@font/poppins_semibold"
+        android:paddingStart="28dp"
+        android:paddingEnd="28dp"
+        android:text="Close"
+        android:textAllCaps="false"
+        android:textColor="#778293"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.94" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Mini Ace Test Results"
+        android:textColor="@color/green_haki"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.078" />
+
+    <TextView
+        android:id="@+id/timeMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Total Time: 7:07min"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/dateMA"
+        app:layout_constraintEnd_toEndOf="@+id/imageView13"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
+        app:layout_constraintTop_toTopOf="@+id/imageView13"
+        app:layout_constraintVertical_bias="0.702" />
+
+    <TextView
+        android:id="@+id/dateMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Date: 12.04.2024"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/textView21"
+        app:layout_constraintEnd_toEndOf="@+id/timeMA"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/timeMA" />
+
+    <TextView
+        android:id="@+id/textView21"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Score"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/attentionScore"
+        app:layout_constraintEnd_toEndOf="@+id/dateMA"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/dateMA" />
+
+    <TextView
+        android:id="@+id/attentionScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Attention: 2/4"
+        android:fontFamily="@font/poppins_regular"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/memoryScore"
+        app:layout_constraintEnd_toEndOf="@+id/textView21"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView21" />
+
+    <TextView
+        android:id="@+id/memoryScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Memory: 2/7"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/fluencyScore"
+        app:layout_constraintEnd_toEndOf="@+id/attentionScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/attentionScore" />
+
+    <TextView
+        android:id="@+id/fluencyScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Fluency: 3/7"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/visuospatialScore"
+        app:layout_constraintEnd_toEndOf="@+id/memoryScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/memoryScore" />
+
+    <TextView
+        android:id="@+id/visuospatialScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Visuospatial: 1/5"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/memoryRecallScore"
+        app:layout_constraintEnd_toEndOf="@+id/fluencyScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/fluencyScore" />
+
+    <TextView
+        android:id="@+id/memoryRecallScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="Memory Recall: 3/7"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/totalMA"
+        app:layout_constraintEnd_toEndOf="@+id/visuospatialScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/visuospatialScore" />
+
+    <TextView
+        android:id="@+id/totalMA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="108dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Total: 17/30"
+        android:textColor="@color/green_haki"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView13"
+        app:layout_constraintEnd_toEndOf="@+id/memoryRecallScore"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/memoryRecallScore" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

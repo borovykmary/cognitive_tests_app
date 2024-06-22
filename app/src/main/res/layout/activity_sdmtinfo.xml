@@ -114,18 +114,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/paper" />
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="110 items"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="Unlimited trials"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/textView5"
@@ -140,18 +140,18 @@
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
-    <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/inter_medium"
-        android:text="10 min to 15 min"
-        android:textColor="@color/black"
-        android:textSize="16dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/inter_medium"
+            android:text="1 min and 30 seconds"
+            android:textColor="@color/black"
+            android:textSize="16dp"
+            app:layout_constraintStart_toEndOf="@+id/imageView8"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
         android:id="@+id/textView7"
@@ -186,30 +186,28 @@
         android:layout_marginStart="46dp"
         android:layout_marginTop="15dp"
         android:fontFamily="@font/inter_regular"
-        android:text="Tap on options to select the correct answer
-        Tap on the corresponding arrow icon if you want to go back to the previous question
-Click submit if you are sure you want to
-complete all the quizzes"
+        android:text="During this test your goal is to combine symbol and corresponding number for this symbol. after every try, number-symbol pair changes along with given symbol to match. To match number with symbol click on corresponding number. Try to match as many as possible!"
         android:textColor="@color/text_gray"
         android:textSize="14dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:fontFamily="@font/poppins_semibold"
-        android:shadowColor="@color/text_gray"
-        android:shadowDx="3"
-        android:shadowDy="4"
-        android:shadowRadius="7"
-        android:text="Symbol Digit Modalities Test"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="80dp" />
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="71dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:shadowColor="@color/text_gray"
+            android:shadowDx="3"
+            android:shadowDy="4"
+            android:shadowRadius="7"
+            android:text="Symbol Digit Modalities Test"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView4"
+            app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView11"

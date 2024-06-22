@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MiniAceTestActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MiniAceTest.MiniAceTestActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="535dp"
+        android:layout_height="693dp"
+        android:layout_marginBottom="280dp"
+        android:rotation="-47"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/bg_gradient" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/card_background" />
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="48dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:srcCompat="@drawable/indicator" />
+
+    <ImageView
+        android:id="@+id/MiniAceBackButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/back_arrow" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/clock_background" />
+
+    <ImageView
+        android:id="@+id/previous_button_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        app:layout_constraintBottom_toBottomOf="@+id/next_button_image"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/next_button_image"
+        app:srcCompat="@drawable/previous_button" />
+
+    <ImageView
+        android:id="@+id/next_button_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="43dp"
+        android:layout_marginBottom="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/next_button" />
+
+    <Button
+        android:id="@+id/buttonTestSubmit"
+        android:layout_width="179dp"
+        android:layout_height="53dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/button_with_stroke"
+        android:fontFamily="@font/inter_medium"
+        android:text="Submit Test"
+        android:textAllCaps="false"
+        android:textColor="#D4D4D4"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="@+id/next_button_image"
+        app:layout_constraintEnd_toStartOf="@+id/next_button_image"
+        app:layout_constraintStart_toEndOf="@+id/previous_button_image"
+        app:layout_constraintTop_toTopOf="@+id/next_button_image"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPagerQuestions"
+        android:layout_width="409dp"
+        android:layout_height="430dp"
+        android:layout_marginBottom="102dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </androidx.viewpager2.widget.ViewPager2>
+
+    <ImageView
+        android:id="@+id/imageViewCounter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="538dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/number_quiz_1" />
+
+    <TextView
+        android:id="@+id/textViewTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="00:00"
+        android:textColor="@color/green"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageView10"
+        app:layout_constraintHorizontal_bias="0.73"
+        app:layout_constraintStart_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/imageView10" />
+
+    <ImageView
+        android:id="@+id/imageViewCounterAce4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+        app:layout_constraintEnd_toStartOf="@+id/imageView10"
+        app:layout_constraintTop_toTopOf="@+id/imageView10"
+        app:srcCompat="@drawable/background_cards_counter" />
+
+    <TextView
+        android:id="@+id/textViewTimeAce4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:fontFamily="@font/poppins_regular"
+        android:text="01:00"
+        android:textColor="@color/red"
+        android:visibility="gone"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="@+id/imageViewCounterAce4"
+        app:layout_constraintStart_toStartOf="@+id/imageViewCounterAce4"
+        app:layout_constraintTop_toTopOf="@+id/imageViewCounterAce4" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

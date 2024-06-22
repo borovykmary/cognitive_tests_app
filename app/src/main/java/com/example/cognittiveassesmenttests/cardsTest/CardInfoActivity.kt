@@ -2,6 +2,7 @@ package com.example.cognittiveassesmenttests.cardsTest
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,10 @@ import com.example.cognittiveassesmenttests.HomeFragment
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 
+/**
+ * This activity provides information about the Cards test.
+ * It includes a back button to return to the main activity and a button to start the Cards test.
+ */
 class CardInfoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +30,11 @@ class CardInfoActivity : AppCompatActivity() {
         val CardsInfoBackButton = findViewById<ImageView>(R.id.CardsInfoBackButton)
         CardsInfoBackButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+        val CardsInfoTestButton = findViewById<Button>(R.id.buttonTestNextCards)
+        CardsInfoTestButton.setOnClickListener {
+            val intent = Intent(this, CardsActivity::class.java)
             startActivity(intent)
         }
     }

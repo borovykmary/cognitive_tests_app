@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="944dp">
+        <ImageView
+            android:id="@+id/imageView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.051"
+            app:srcCompat="@drawable/admin_popup" />
+        <ImageView
+            android:id="@+id/imageView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.087"
+            app:srcCompat="@drawable/score_bg" />
+
+        <ImageView
+            android:id="@+id/imageView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.262"
+            app:srcCompat="@drawable/score_bg" />
+
+        <ImageView
+            android:id="@+id/imageView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.436"
+            app:srcCompat="@drawable/score_bg" />
+
+        <ImageView
+            android:id="@+id/imageView22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.564"
+            app:srcCompat="@drawable/score_bg" />
+
+        <ImageView
+            android:id="@+id/imageView23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.642"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.676"
+            app:srcCompat="@drawable/score_bg" />
+
+        <TextView
+            android:id="@+id/name2recall_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/address1recall_answer"
+            app:layout_constraintStart_toStartOf="@+id/address1recall_answer"
+            app:layout_constraintTop_toBottomOf="@+id/address1recall_answer" />
+
+        <TextView
+            android:id="@+id/address2recall_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/name2recall_answer"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="@+id/name2recall_answer"
+            app:layout_constraintTop_toBottomOf="@+id/name2recall_answer" />
+
+        <TextView
+            android:id="@+id/animals_answer"
+            android:layout_width="343dp"
+            android:layout_height="64dp"
+            android:layout_marginTop="56dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/address2_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/address2_answer"
+            app:layout_constraintTop_toBottomOf="@+id/address2_answer" />
+
+        <TextView
+            android:id="@+id/address2_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/name2_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name2_answer"
+            app:layout_constraintTop_toBottomOf="@+id/name2_answer" />
+
+        <TextView
+            android:id="@+id/name1_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="40dp"
+            app:layout_constraintEnd_toEndOf="@+id/year_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/year_answer"
+            app:layout_constraintTop_toBottomOf="@+id/year_answer" />
+
+        <TextView
+            android:id="@+id/name1recall_answer"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="156dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/animals_answer"
+            app:layout_constraintHorizontal_bias="0.024"
+            app:layout_constraintStart_toStartOf="@+id/animals_answer"
+            app:layout_constraintTop_toBottomOf="@+id/animals_answer" />
+
+        <TextView
+            android:id="@+id/day_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="116dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.136"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/date_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/day_answer"
+            app:layout_constraintStart_toStartOf="@+id/day_answer"
+            app:layout_constraintTop_toBottomOf="@+id/day_answer" />
+
+        <TextView
+            android:id="@+id/month_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/date_answer"
+            app:layout_constraintStart_toStartOf="@+id/date_answer"
+            app:layout_constraintTop_toBottomOf="@+id/date_answer" />
+
+        <TextView
+            android:id="@+id/year_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/month_answer"
+            app:layout_constraintStart_toStartOf="@+id/month_answer"
+            app:layout_constraintTop_toBottomOf="@+id/month_answer" />
+
+        <TextView
+            android:id="@+id/name2_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/address1_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/address1_answer"
+            app:layout_constraintTop_toBottomOf="@+id/address1_answer" />
+
+        <TextView
+            android:id="@+id/address1_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/name1_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/name1_answer"
+            app:layout_constraintTop_toBottomOf="@+id/name1_answer" />
+
+        <TextView
+            android:id="@+id/simpleText"
+            android:layout_width="175dp"
+            android:layout_height="46dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Clock Drawing RESULTS"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/textView37"
+            app:layout_constraintEnd_toEndOf="@+id/animals_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/animals_answer"
+            app:layout_constraintTop_toBottomOf="@+id/textView36" />
+
+        <TextView
+            android:id="@+id/address1recall_answer"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/name1recall_answer"
+            app:layout_constraintStart_toStartOf="@+id/name1recall_answer"
+            app:layout_constraintTop_toBottomOf="@+id/name1recall_answer" />
+
+        <Spinner
+            android:id="@+id/input1"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintStart_toEndOf="@+id/textView29"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Spinner
+            android:id="@+id/input2"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="136dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toEndOf="@+id/textView33"
+            app:layout_constraintTop_toBottomOf="@+id/input1" />
+
+        <Spinner
+            android:id="@+id/input3"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="136dp"
+            android:fontFamily="@font/poppins_regular"
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintHorizontal_bias="0.547"
+            app:layout_constraintStart_toEndOf="@+id/textView35"
+            app:layout_constraintTop_toBottomOf="@+id/input2" />
+
+        <Spinner
+            android:id="@+id/input4"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="96dp"
+            android:fontFamily="@font/poppins_regular"
+
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView36"
+            app:layout_constraintTop_toBottomOf="@+id/input3" />
+
+        <Spinner
+            android:id="@+id/input5"
+            android:layout_width="96dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:fontFamily="@font/poppins_regular"
+
+            android:textColor="@color/green_haki"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/textView37"
+            app:layout_constraintTop_toBottomOf="@+id/download_button"
+            app:layout_constraintVertical_bias="0.113" />
+
+        <Button
+            android:id="@+id/confirm_button"
+            android:layout_width="136dp"
+            android:layout_height="35dp"
+
+            android:background="@drawable/gradient_rounded_button"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Confirm"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.823"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.938" />
+
+        <Button
+            android:id="@+id/download_button"
+            android:layout_width="136dp"
+            android:layout_height="35dp"
+
+            android:background="@drawable/button_with_stroke"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Download"
+            android:textAllCaps="false"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageView23"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintHorizontal_bias="0.787"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toBottomOf="@+id/input4" />
+
+        <TextView
+            android:id="@+id/textView29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="ATTENTION"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/input1"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/input1"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView33"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="MEMORY"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/input2"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/input2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="FLUENCY"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/input3"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/input3"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="VISUOSPATIAL"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/input4"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/input4"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView37"
+            android:layout_width="wrap_content"
+            android:layout_height="19dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="MEMORY RECALL"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@+id/input5"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toTopOf="@+id/input5"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mini Ace Results Processing"
+            android:textSize="20dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/green_haki"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.032" />
+
+        <Button
+            android:id="@+id/closeButtonAdmin"
+            android:layout_width="136dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="48dp"
+            android:background="@drawable/button_with_stroke"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Close"
+            android:textAllCaps="false"
+            android:textColor="@color/gray"
+            android:textSize="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/confirm_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/confirm_button"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/time"
+            android:fontFamily="@font/poppins_semibold"
+            android:textColor="@color/green_haki"
+            android:textSize="16sp"
+            android:layout_width="180dp"
+            android:layout_height="25dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView18"
+            app:layout_constraintEnd_toEndOf="@+id/address2recall_answer"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/address2recall_answer"
+            app:layout_constraintTop_toBottomOf="@+id/address2recall_answer"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
+</ScrollView>

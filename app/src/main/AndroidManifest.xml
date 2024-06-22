@@ -7,32 +7,57 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/faq"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/faq"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
         <activity
+            android:name=".AdminActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
+            android:name=".MiniAceTest.MiniAceTestActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
+            android:exported="false" />
+        <activity
             android:name=".SDMTTest.SDMTActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".SDMTTest.SDMTInfoActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MiniAceTest.MiniAceInfoActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".cardsTest.CardInfoActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".cardsTest.CardsActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".RegisterActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".LoginActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -42,6 +67,8 @@
         </activity>
         <activity
             android:name=".MainActivity"
+            android:windowSoftInputMode="adjustNothing"
+            android:screenOrientation="portrait"
             android:exported="false" />
     </application>
 

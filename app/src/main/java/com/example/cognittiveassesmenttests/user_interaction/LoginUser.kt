@@ -3,6 +3,7 @@ package com.example.cognittiveassesmenttests.user_interaction
 import android.app.Activity
 import android.content.Intent
 import android.widget.Toast
+import com.example.cognittiveassesmenttests.AdminActivity
 import com.example.cognittiveassesmenttests.MainActivity
 import com.example.cognittiveassesmenttests.R
 import com.google.android.gms.auth.api.signin.GoogleSignIn
@@ -13,6 +14,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 /**
@@ -34,10 +36,21 @@ class LoginUser(private val activity: Activity) {
     auth.signInWithEmailAndPassword(email, password)
         .addOnCompleteListener { task ->
             if (task.isSuccessful) {
-                // User logged in successfully
-                Toast.makeText(activity, "Logged in successfully", Toast.LENGTH_SHORT).show()
-                val intent = Intent(activity, MainActivity::class.java)
-                activity.startActivity(intent)
+                val user = FirebaseAuth.getInstance().currentUser
+                val db = FirebaseFirestore.getInstance()
+                db.collection("Users").document(user?.uid!!).get().addOnSuccessListener { document ->
+                    val role = document.getString("role")
+                    if (role == "ROLE_ADMIN"){
+                        Toast.makeText(activity, "Logged in successfully admin", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(activity, AdminActivity::class.java)
+                        activity.startActivity(intent)
+                    } else {
+                        // User logged in successfully
+                        Toast.makeText(activity, "Logged in successfully", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(activity, MainActivity::class.java)
+                        activity.startActivity(intent)
+                    }
+                }
                 } else {
                 // Login failed
                 Toast.makeText(activity, "Login failed", Toast.LENGTH_SHORT).show()

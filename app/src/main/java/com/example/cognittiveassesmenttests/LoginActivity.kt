@@ -14,6 +14,11 @@ import com.example.cognittiveassesmenttests.helpers.blurBitmap
 import com.example.cognittiveassesmenttests.helpers.drawableToBitmap
 import com.example.cognittiveassesmenttests.user_interaction.LoginUser
 
+/**
+ * This activity handles user authentication.
+ * It includes functionality for user login and registration.
+ * It communicates with Firebase to authenticate users and manage user data.
+ */
 class LoginActivity : AppCompatActivity() {
     private lateinit var loginUser: LoginUser
     override fun onCreate(savedInstanceState: Bundle?) {

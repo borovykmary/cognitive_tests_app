@@ -1,7 +1,15 @@
 package com.example.cognittiveassesmenttests.dataClasses
 
+/**
+ * A data class that represents a record of a MiniAce test.
+ * It holds the test's properties, such as date, time, and various scores.
+ */
 data class TestRecordMA(
-    val testName: String,
     val testDate: String,
-    val testDetails: String
+    val testTime: String,
+    val attentionScore: String,
+    val clockDrawingScore: String,
+    val memoryScore: String,
+    val fluencyScore: String,
+    val memoryRecallScore: String,
 )

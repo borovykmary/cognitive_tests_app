@@ -5,15 +5,28 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cognittiveassesmenttests.CardsDetailsDialogFragment
 import com.example.cognittiveassesmenttests.R
 import com.example.cognittiveassesmenttests.dataClasses.TestRecordCARD
 
-class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
+/**
+ * This class is an adapter for displaying CARD test records in a RecyclerView.
+ *
+ * @property testRecords The list of test records to display.
+ * @property fragmentManager The FragmentManager for showing the details dialog.
+ */
+class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>, private val fragmentManager: FragmentManager) : RecyclerView.Adapter<TestRecordAdapterCARD.TestRecordViewHolder>() {
 
+    /**
+     * This class represents a view holder for a test record item.
+     *
+     * @property testDate The TextView for the test date.
+     * @property testDetails The TextView for the test details button.
+     */
     class TestRecordViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val testName: TextView = view.findViewById(R.id.TestResultCARD)
-        val testDate: TextView = view.findViewById(R.id.time)
+        val testDate: TextView = view.findViewById(R.id.simpleText)
         val testDetails: TextView = view.findViewById(R.id.seeDetailsButton)
     }
 
@@ -25,9 +38,12 @@ class TestRecordAdapterCARD(private val testRecords: List<TestRecordCARD>) : Rec
     override fun onBindViewHolder(holder: TestRecordViewHolder, position: Int) {
         Log.d("RecordsFragment", "Test records: $testRecords")
         val testRecord = testRecords[position]
-        holder.testName.text = testRecord.testName
         holder.testDate.text = testRecord.testDate
-        holder.testDetails.text = testRecord.testDetails
+
+        holder.testDetails.setOnClickListener {
+            val dialog = CardsDetailsDialogFragment.newInstance(testRecord)
+            dialog.show(fragmentManager, "DetailsDialogFragment")
+        }
     }
 
     override fun getItemCount() = testRecords.size
